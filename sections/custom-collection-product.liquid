@@ -1,0 +1,371 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.25 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.25 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="modal-box-section">
+  <div class="section-{{ section.id }}-padding">
+    <div class="Page_width">
+      <h2>{{ section.settings.title }}</h2>
+      <div class="modal-box-container">
+        {% for block in section.blocks %}
+          <div class="modal-box-item">
+            <div class="modal-box-item-image-container">
+              {% if block.settings.image != blank %}
+                <img src="{{ block.settings.image | img_url: '' }}" class="modal-box-image">
+                <span class="modal-plus-icon">
+                  <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16.7373" cy="16.7373" r="16.0678" stroke="#727272" stroke-width="1.33898"/>
+                    <path d="M18.1315 11.1238V15.9107H22.9184H23.6364V17.3467H22.9184H18.1315V22.1336V22.8516H16.6954V22.1336V17.3467H11.9086H11.1905V15.9107H11.9086H16.6954V11.1238V10.4058H18.1315V11.1238Z" fill="#727272"/>
+                  </svg>
+                </span>
+              {% endif %}
+            </div>
+            <div class="modal-box-content">
+              <h3>{{ block.settings.heading }}</h3>
+              <div>{{ block.settings.desc }}</div>
+            </div>
+            <div class="modal-box"> <!-- Moved modal-box here -->
+              <div class="modal-box-image">
+                {% if block.settings.image != blank %}
+                  <img src="{{ block.settings.image | img_url: '' }}" class="modal-box-image">
+                {% endif %}
+              </div>
+              <div class="modal-box-content">
+                <span class="modal-close-button">
+                  <svg width="34" height="34" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="16.7373" cy="16.7373" r="16.0678" stroke="#727272" stroke-width="1.33898"/>
+                    <path d="M18.1315 11.1238V15.9107H22.9184H23.6364V17.3467H22.9184H18.1315V22.1336V22.8516H16.6954V22.1336V17.3467H11.9086H11.1905V15.9107H11.9086H16.6954V11.1238V10.4058H18.1315V11.1238Z" fill="#727272"/>
+                  </svg>
+                </span>
+                <h3>{{ block.settings.heading }}</h3>
+                <div>{{ block.settings.desc }}</div>
+                <div>{{ block.settings.modal-desc }}</div>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  
+ .modal-box-section h2 {
+    font-size: 38px;
+    font-weight: 700;
+    color: #D9D9D9;
+  }
+
+  .modal-box-section .modal-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 25px;
+  }
+
+  .modal-box-section .modal-box-container .modal-box-item {
+    width: 31%;
+    position: relative;
+  }
+
+  .modal-box-section .modal-box-container .modal-box-item img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    cursor: pointer;
+    max-width: 175px;
+    margin: auto;
+  }
+
+  .modal-box-section .modal-box-container .modal-box-item .modal-box-item-image-container {
+    position: relative;
+    background: linear-gradient(145deg, #1E1E1E 0%, #010101 49.69%, rgba(70, 70, 70, 0) 114.24%),
+                linear-gradient(0deg, #2D2D2D, #2D2D2D);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 400px;
+    border-radius: 15px;
+  }
+
+  .modal-box-section .modal-box-container .modal-box-item .modal-plus-icon {
+    /* position: absolute; */
+    bottom: 0;
+    /* left: 50%; */
+    /* transform: translateX(-50%); */
+    z-index: 4;
+    margin-block: 30px;
+    cursor: pointer;
+  }
+
+  .modal-box-section .modal-box-container .modal-box-item h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #D9D9D9;
+    margin-top: 15px;
+    margin-bottom: 8px;
+  }
+
+  .modal-box-section .modal-box-container .modal-box-item p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #D9D9D9;
+    margin: 0;
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translate(-50%, 100%);
+    }
+    to {
+      transform: translate(-50%, -50%);
+    }
+  }
+  
+  .modal-box-section .modal-box-container .modal-box-item .modal-box {
+    /* Other styles */
+    display: none;
+    width: 100%;
+    max-width: 1000px;
+    position: fixed;
+    top: 50%; /* Start at the center */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #010101;
+    box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+    border-radius: 18px;
+    z-index: 100;
+    animation: slideIn 0.3s ease-in;
+  }
+  
+  .modal-box-section .modal-box-container .modal-box-item .modal-box.modal-box-visible {
+    display: block;
+  }
+
+  .modal-box-section .modal-box-container .modal-box-item .modal-box {
+      transition: transform .5s ease-in-out, opacity .5s ease-in-out;
+      transform: translate(100%, 100%);
+      opacity: 0;
+  }
+  
+  .modal-box-section .modal-box-container .modal-box-item .modal-box.modal-box-visible {
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    position: fixed; /* Add this line */
+}
+
+  .modal-box-section .modal-box-container .modal-box-visible {
+    display: flex !important;
+    justify-content: space-between;
+  }
+  
+  .modal-box-section .modal-box-container .modal-box-visible .modal-box-image {
+    width: 49%;
+    display: flex;
+    padding: 20px 0;
+  }
+  
+  .modal-box-section .modal-box-container .modal-box-visible .modal-box-image img {
+    width: 100%;
+    height: auto;
+  }
+  
+  .modal-box-section .modal-box-container .modal-box-visible .modal-box-content {
+    width: 49%;
+    padding: 30px;
+  }
+
+  .modal-box-section .modal-box-container .modal-box-item .modal-box .modal-close-button {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    cursor: pointer;
+  }
+  
+  .modal-box-section .modal-box-container .modal-box-item .modal-box .modal-close-button svg {
+    transform: rotate(45deg);
+  }
+
+  @media screen and (max-width: 1080px) {
+    .modal-box-section .modal-box-container .modal-box-item {
+      width: 48%;
+    }
+    .modal-box-section .modal-box-container .modal-box-item .modal-box {
+      max-width: 86%;
+    }
+  }
+
+  @media screen and (max-width: 767px) {
+    .modal-box-section .modal-box-container {
+      flex-wrap: nowrap;
+      justify-content: start;
+      overflow-x: auto;
+      padding-bottom: 50px;
+      gap: 12px;
+    }
+    .modal-box-section .modal-box-container .modal-box-item .modal-box-item-image-container {
+      height: 300px;
+    }
+    .modal-box-section .modal-box-container .modal-box-item {
+      min-width: 230px;
+    }
+    
+    .modal-box-container::-webkit-scrollbar {
+      height: 4px;
+    }
+    
+    .modal-box-container::-webkit-scrollbar-thumb {
+      background-color: #FFD375;
+      border-radius: 4px;
+    }
+    
+    .modal-box-container::-webkit-scrollbar-thumb:hover {
+      background-color: rgba(0, 0, 0, 0.4);
+    }
+    
+    .modal-box-container::-webkit-scrollbar-track {
+      background-color: #3D3D3D;
+      border-radius: 4px;
+    }
+
+    .modal-box-section .modal-box-container .modal-box-visible {
+      flex-direction: column;
+    }
+    
+    .modal-box-section .modal-box-container .modal-box-visible h3{
+      margin-top: 0;
+    }
+    
+    .modal-box-section .modal-box-container .modal-box-visible .modal-box-image {
+      width: 100%;
+    }
+    
+    .modal-box-section .modal-box-container .modal-box-visible .modal-box-content {
+      width: 100%;
+      padding: 25px;
+    }
+  }
+
+    @media screen and (max-width: 750px) {
+   .modal-box-section h2 {
+      font-size: 25px;
+    }
+      .modal-box-section .modal-box-container .modal-box-item h3 {
+      font-size: 18px;
+      margin-top: 12px;
+    }
+  
+    .modal-box-section .modal-box-container .modal-box-item p {
+      font-size: 14px;
+      font-weight: 400;
+      color: #D9D9D9;
+      margin: 0;
+    }
+  }
+  
+  @media screen and (max-width: 444px) {
+   .modal-box-section h2 {
+      font-size: 18px;
+    }
+      .modal-box-section .modal-box-container .modal-box-item h3 {
+      font-size: 16px;
+      margin-top: 10px;
+    }
+  
+    .modal-box-section .modal-box-container .modal-box-item p {
+      font-size: 12px;
+    }
+  }
+
+</style>
+
+{% schema %}
+{
+  "name": "Modal Box Collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Modal Box Collection"
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 52,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Modal Box Item",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading",
+          "default": "Item Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "desc",
+          "label": "Description",
+          "default": "<p>Item Description</p>"
+        },
+        {
+          "type": "richtext",
+          "id": "modal-desc",
+          "label": "Modal Box Description",
+          "default": "<p>Item Description for Modal Box</p>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Modal Box Collection Section"
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %}

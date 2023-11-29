@@ -1,0 +1,134 @@
+<style>
+  .usp_wrapper {
+    background: {{ section.settings.sec_bg}};
+    color: {{ section.settings.sec_text}};
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 70px 0;
+}
+  .usp_column {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    max-width: 229px;
+    margin: auto;
+    text-align: center;
+}
+  .usp_column > h6 { 
+    font-size: 12px;
+    font-weight: 600;
+    margin: 0;
+}
+  .icon_wrapper{
+    display: flex;
+    height : {{ section.settings.icons_size}}px;
+     width: auto;
+  }
+ .icon_wrapper img {
+    width: auto;
+    height: 100%;
+}
+  @media only screen and (max-width: 767px){
+    .usp_wrapper {
+    display: flex;
+    flex-flow: column;
+    padding: 60px 0;
+    gap: 30px;
+}
+  } 
+  </style>
+   {% if section.settings.show_section %}
+<div class="usp_wrapper">
+  {% for block in section.blocks %}
+   <div class="usp_column">
+     {% if block.settings.icon != blank %}
+     <div class="icon_wrapper">
+       <img src="{{ block.settings.icon | img_url : 'master' }}">
+     </div>
+     {% endif %}
+      <h6>{{ block.settings.heading }}</h6>
+      <span>{{ block.settings.desc }}</span>
+   </div>
+   {% endfor %}
+</div>
+ {% endif %}
+{% schema %}
+  {
+    "name": "Icons with Text PDP",
+    "settings": [
+      {
+  "type": "checkbox",
+  "id": "show_section",
+  "label": "Show Section",
+  "default": true
+},
+
+     {
+  "type": "range",
+  "id": "icons_size",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Icons size",
+  "default": 60
+},
+      {
+  "type": "color",
+  "id": "sec_bg",
+  "label": "Background",
+  "default": "#F5F5F5"
+},
+       {
+  "type": "color",
+  "id": "sec_text",
+  "label": "Text",
+  "default": "#000"
+}
+    ],
+      "max_blocks": 5,
+    "blocks": [
+     {
+       "name": "Icon with Text",
+       "type": "icon-with-text",
+       "settings": [
+            {
+           "type": "image_picker",
+           "id": "icon",
+           "label": "Logo Image"
+         },
+{
+  "type": "text",
+  "id": "heading",
+  "label": "Heading",
+  "default": "heading text"
+},
+         {
+  "type": "richtext",
+  "id": "desc",
+  "label": "Description",
+  "default": "<p>I’m 6’3 and 300 pounds, so needless to say I’m a little bit of a bigger dude, but this chain was straight heat.</p>"
+}
+
+         
+       ]
+     }
+  ],
+    "presets": [
+    {
+      "name": "Icons with Text PDP",
+      "blocks": [
+        {
+          "type": "icon-with-text"
+        },
+        {
+          "type": "icon-with-text"
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %} 

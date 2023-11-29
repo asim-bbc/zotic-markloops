@@ -1,0 +1,258 @@
+<style>
+ .collection-wrapper-{{ section.id }} .collections-container{
+   display:grid;
+   grid-template-columns:repeat({{section.settings.collection_per_row_desk}}, 1fr);
+   gap:{{section.settings.spacing_desk}}px;
+ }
+   a.collection-single-container {
+    position: relative;
+}
+   .collection-wrapper-{{ section.id }}  .button {
+    background: {{ section.settings.btn_bg }};
+    color:  {{ section.settings.btn_text }}; 
+}
+    @media (min-width: 768px){
+    .collection-wrapper-{{ section.id }} .gld-section__preheader {
+    font-size: 34px;
+}
+   .collection-wrapper-{{ section.id }}  .gld-section__title {
+    font-size: 68px;
+    line-height: 1.0735294118em;
+      font-weight: 800;
+}
+    .collection-wrapper-{{ section.id }} .gld-section__subtitle {
+    font-size: 48px;
+    line-height: 1.125em;
+       font-weight: 500;
+}
+    .collection-wrapper-{{ section.id }} .container {
+    padding: 0 60px;
+}
+     
+    .collection-wrapper-{{ section.id }}  .button { 
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    opacity: 0;
+    visibility: hidden;
+}
+       a.collection-single-container:hover .button{
+          opacity: 1;
+    visibility: visible;
+       }
+      
+  }
+  @media (max-width: 768px){
+   .collection-wrapper-{{ section.id }} .collections-container{
+  display:grid;
+   grid-template-columns:repeat({{section.settings.collection_per_row_mbl}}, 1fr);
+      gap:{{section.settings.spacing_mobile}}px;
+ }
+   .collection-wrapper-{{ section.id }}  .gld-section__subtitle {
+    font-size: 24px;
+    line-height: 1.3333333333em;
+}
+   .collection-wrapper-{{ section.id }}  .gld-section__title {
+    font-size: 34px;
+    line-height: 1.2352941176em;
+}
+   .collection-wrapper-{{ section.id }}  .gld-section__preheader {
+    font-size: 17px;
+}
+   .collection-wrapper-{{ section.id }}  .container {
+    padding: 0 20px;
+}
+    .collection-wrapper-{{ section.id }}  .button { 
+    padding: 6px;
+    display: flex;
+    justify-content: center;
+    position: absolute; 
+      width: calc(100% - 60px);
+    bottom: 0;
+    margin: auto;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+  }
+  </style>
+<div class="collection-wrapper-{{ section.id }}">
+   <div class="container">
+        <div class="square-images__text">
+          
+    <div class="gld-section__spacing-top gld-section__headers">
+    
+        <div class="gld-section__preheader">
+            {{ section.settings.heading1 }}
+        </div> 
+    
+      
+          <div class="gld-section__title"> 
+           
+              {{ section.settings.heading2 }}
+          
+          </div> 
+      
+      
+          <div class="gld-section__subtitle">
+               {{ section.settings.heading3 }}
+          </div>
+       
+      
+    </div>
+    
+        </div>
+      </div>
+  <div class="collections-container">
+    {% for block in section.blocks %}
+      {% assign collection = block.settings.collection %}
+      <a href="{{ collection.url }}" class="collection-single-container">
+        <div class="collectoin-single-image">
+          {% if block.settings.collec_image %}<img src="{{ collection.featured_image | img_url : 'master' }}">{% else %}
+         {% if block.settings.image != blank %} <img src="{{ block.settings.image | img_url : 'master' }}">{% else %}
+           {%- capture placeholder -%}{% cycle 'lifestyle-1', 'lifestyle-2' %}{%- endcapture -%}
+              {{ placeholder | placeholder_svg_tag: 'Slideshow__Image PlaceholderBackground__Svg' }}{% endif %}{% endif %}
+        </div>
+        <div class="button"><span>{{ block.settings.btn_lbl }}</span></div>
+      </a>
+      {% endfor %}
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Custom Collections",
+    "settings": [
+      
+      
+       {
+  "type": "text",
+  "id": "heading1",
+  "label": "Pre-Heading",
+  "default": "Join the"
+},
+      {
+  "type": "text",
+  "id": "heading2",
+  "label": "Heading",
+  "default": "GLD Gang"
+},
+      {
+  "type": "text",
+  "id": "heading3",
+  "label": "Sub-Heading",
+  "default": "@shopGLD"
+},
+      {
+  "type": "range",
+  "id": "collection_per_row_desk",
+  "min": 1,
+  "max": 5,
+  "step": 1,
+  "unit": "px",
+  "label": "Collections Per Row (Desktop)",
+  "default": 3
+},
+      {
+  "type": "range",
+  "id": "collection_per_row_mbl",
+  "min": 1,
+  "max": 5,
+  "step": 1,
+  "unit": "px",
+  "label": "Collections Per Row (Mobile)",
+  "default": 1
+},
+       {
+  "type": "range",
+  "id": "spacing_desk",
+  "min": 0,
+  "max": 60,
+  "step": 1,
+  "unit": "px",
+  "label": "Space between Collections (Desktop)",
+  "default": 20
+},
+       {
+  "type": "range",
+  "id": "spacing_mobile",
+  "min": 0,
+  "max": 60,
+  "step": 1,
+  "unit": "px",
+  "label": "Space between Collections (Mobile)",
+  "default": 20
+},
+       {
+  "type": "color",
+  "id": "btn_bg",
+  "label": "Button Background",
+  "default": "#fff"
+},
+       {
+  "type": "color",
+  "id": "btn_text",
+  "label": "Button text",
+  "default": "#000"
+}
+     
+
+    ],
+       "blocks": [
+     {
+       "name": "Collection",
+       "type": "collection",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Collection Image"
+         },
+         {
+  "type": "checkbox",
+  "id": "collec_image",
+  "label": "Use Collection Featured Image",
+  "default": false
+},{
+  "type": "collection",
+  "id": "collection",
+  "label": "Collection"
+},
+         {
+  "type": "text",
+  "id": "btn_lbl",
+  "label": "Button Label",
+  "default": "SHOP NOW"
+}
+
+
+
+       ]
+     }
+  ],
+    "presets": [
+    {
+      "name": "Custom Collections",
+      "blocks": [
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        },
+        {
+          "type": "collection"
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

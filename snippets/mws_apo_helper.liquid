@@ -1,0 +1,43 @@
+<script>
+function mwApoCustom() {
+  window.mwApoInit  = window.mwApoInit  || {};
+  window.mwApoInit.onEvent = function (event, args) {  
+      if (event == "init::finish") {
+        if (document.querySelector(".shopify-payment-button")) {
+          document.querySelector(".shopify-payment-button").style.display =
+            "none";
+
+          var mutationObserver = new MutationObserver(function (mutations) {
+            mutations.forEach(function (mutation) {
+              document.querySelector(".shopify-payment-button").style.display =
+                "none";
+            });
+          });
+
+          mutationObserver.observe(
+            document.getElementsByClassName("shopify-payment-button")[0],
+            {
+              attributes: true,
+              characterData: true,
+              childList: true,
+              subtree: true,
+              attributeOldValue: true,
+              characterDataOldValue: true,
+            }
+          );
+        }
+      }
+  };
+  window.mwApoInit.onCallback = function (event, data) {
+     return data;
+  };
+  window.mwApoInit.settings.selectors.product.gallery_container = '.custom_selector';
+}
+</script>
+
+<style>
+
+</style>
+
+
+

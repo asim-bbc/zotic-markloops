@@ -1,0 +1,189 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.25 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.25 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<div class="custom-collapsible-accordions-section">
+  <div class="section-{{ section.id }}-padding">
+    <div class="Page_width">
+      <div class="custom-collapsible-accordions-container">
+        {% for block in section.blocks %}
+          <div class="accordion-item">
+            <div class="accordion-title">
+              <p>{{ block.settings.title }}</p>
+              <span class="accordion-toggle">+</span>
+            </div>
+            <div class="accordion-content">
+              {% if block.settings.enable-desc %}
+                {{ product.description }}
+              {% else %}
+               <div> {{ block.settings.content }}</div>
+                <div> {{ block.settings.page.content }}</div>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<style>
+
+.custom-collapsible-accordions-container {
+  max-width: 964px;
+  margin: auto;
+}
+
+.custom-collapsible-accordions-container .accordion-item {
+  border-bottom: 1px solid rgb(41, 45, 50);
+  overflow: hidden;
+}
+
+.custom-collapsible-accordions-container .accordion-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: transparent;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  padding: 25px 7px;
+  cursor: pointer;
+}
+
+.custom-collapsible-accordions-container .accordion-title p {
+  font-size: 16px;
+  margin: 0;
+}
+
+.custom-collapsible-accordions-container .accordion-toggle {
+  font-size: 24px;
+  line-height: 1;
+  transition: transform 0.3s ease;
+}
+
+.custom-collapsible-accordions-container .accordion-content {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0;
+  font-size: 16px;
+  color: #fff;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.custom-collapsible-accordions-container .accordion-content p {
+  background-color: transparent !important;
+  background: transparent;
+  color: #fff !important;
+  font-size: 16px !important;
+}
+
+.custom-collapsible-accordions-container .accordion-item.open .accordion-content {
+  padding: 0 7px;
+  margin-bottom: 25px;
+  transition: max-height 0.5s ease, padding 0.5s ease;
+}
+
+.custom-collapsible-accordions-container .accordion-item.open .accordion-toggle {
+  font-size: 28px;
+}
+
+@media screen and (max-width: 767px) {
+  .custom-collapsible-accordions-container .accordion-title {
+    font-size: 12px;
+    padding: 18px 5px;
+  }
+  .custom-collapsible-accordions-container .accordion-title p {
+    font-size: 12px;
+  }
+  .custom-collapsible-accordions-container .accordion-content {
+    font-size: 12px;
+  }
+  .custom-collapsible-accordions-container .accordion-content p {
+    font-size: 12px !important;
+  }
+}
+  
+</style>
+
+
+{% schema %}
+{
+  "name": "Custom Accordions",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 52,
+      "unit": "px"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "block",
+      "name": "Accordion",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading"
+        },
+        {
+          "type": "richtext",
+          "id": "content",
+          "label": "Description (Content)"
+        },
+        {
+  "type": "page",
+  "id": "page",
+  "label": "Page"
+},
+        {
+          "type": "checkbox",
+          "id": "enable-desc",
+          "label": "Enable Description",
+          "default": false
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Collapsible Accordions"
+    }
+  ]
+}
+{% endschema %}
+
+{% javascript %}
+{% endjavascript %}

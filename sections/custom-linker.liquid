@@ -1,0 +1,57 @@
+<div class="gld-section gld-section-color__light">
+  <div class="container">
+    <div class="v3-gender-switcher">
+      <div class="v3-gender-switcher-button v3-gender-switcher-button__men {% if section.settings.btn_one_link == request.path %}v3-gender-switcher-button__active{% endif %}">
+        <a href="{{ section.settings.btn_one_link }}">{{ section.settings.btn_one_text }}</a>
+      </div>
+      <a href="{{ section.settings.btn_two_link }}" class="v3-gender-switcher-button v3-gender-switcher-button__women {% if section.settings.btn_two_link == request.path %}v3-gender-switcher-button__active{% endif %}">
+        {{ section.settings.btn_two_text }}
+      </a>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Custom Linker",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Button One"
+      },
+      {
+        "type": "text",
+        "id": "btn_one_text",
+        "label": "Button Label",
+        "default": "4 Him"
+      },
+      {
+        "type": "url",
+        "id": "btn_one_link",
+        "label": "Button Link"
+      },
+      {
+        "type": "header",
+        "content": "Button Two"
+      },
+      {
+        "type": "text",
+        "id": "btn_two_text",
+        "label": "Button Label",
+        "default": "4 Her"
+      },
+      {
+        "type": "url",
+        "id": "btn_two_link",
+        "label": "Button Link"
+      }
+    ],
+    "presets": [
+    {
+      "category": "Collection",
+      "name": "Custom Linker",
+      "settings": {}
+    }
+  ]
+  }
+{% endschema %}

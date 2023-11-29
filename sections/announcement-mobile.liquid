@@ -1,0 +1,50 @@
+<div class="announcement-mobile">
+  <p>{{ section.settings.text }}</p>
+</div>
+{% schema %}
+  {
+    "name": "Announcement Mobile",
+    "settings": [
+      {
+        "type": "text",
+        "id": "text",
+        "label": "Text"
+      },
+      {
+        "type": "color",
+        "id": "background_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "text_color",
+        "label": "Text Color"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+<style>
+  .announcement-mobile{
+    display: none;
+  }
+  @media screen and (max-width: 1007px){
+    .announcement-mobile{
+      /* display: block; */
+      background: {{ section.settings.background_color }};
+      padding: 5px;
+    }
+    .announcement-mobile p{
+      color: {{ section.settings.text_color }};
+      background: {{ section.settings.background_color }};
+      margin: 0;
+      text-align: center;
+      font-size: 12px;
+    }
+  }
+</style>

@@ -1,0 +1,213 @@
+div#shopify-section-header , div#announcement-bar-with-slider{
+  display:none!important;
+}
+ .Landing_header_outer img {
+    max-width: 180px;
+}
+.Landing_header_outer {
+    text-align: center;
+    padding: 25px 0;
+}
+@media only screen and (max-width: 900px) {
+    .Desktop_only{
+        display: none !important;
+    }
+}
+@media only screen and (min-width: 900px) {
+    .Mobile_only{
+        display: none !important;
+    }
+}
+.Collection_banner_outer{
+    overflow: hidden;
+}
+.Collection_banner_outer img{
+    margin-bottom: -10px;
+}
+.Landing_header_outer{
+    text-align: center;
+}
+.Listicle_outer{
+    padding: 50px 20px;
+    background: #F5F5F5;
+}
+.Listicle_inner{
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+}
+.Listicle_inner h2{
+    font-size: 28px;
+    color: #444444;
+}
+.Listicle_inner p{
+    font-weight: 400;
+    font-size: 18px;
+    color: #444444;
+}
+.Listicle_inner .arrow{
+    max-width: 30px;
+    margin-top: 20px;
+}
+.Listicle_flex_outer{
+    max-width: 1800px;
+    margin: auto;
+}
+.Listicle_flex{
+    display: flex;
+    overflow: hidden;
+}
+.Listicle_flex img{
+    margin-bottom: -10px;
+    width: 100%;
+}
+.Listicle_flex > div{
+    width: 100%;
+    background: #444444;
+}
+.Listicle_flex.Reversed > div{
+    width: 100%;
+    background: #F5F5F5;
+}
+.Listicle_flex.Reversed h2, 
+.Listicle_flex.Reversed p,
+.Listicle_flex.Reversed h2 span{
+    color: #444444;
+}
+.Listicle_flex > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.Listicle_flex > div > div{
+    max-width: 80%;
+}
+.Listicle_flex  h2{
+    font-size: 28px;
+    color: white;
+    margin: 10px 0;
+}
+.Listicle_flex  h2 span{
+    color: white;
+    font-size: 44px;
+    padding-right: 5px;
+}
+.Listicle_flex  p{
+    font-size: 18px;
+    font-weight: 400;
+    color: white;
+    margin: 10px 0;
+}
+@media only screen and (min-width: 900px) {
+    .Listicle_flex.Reversed{
+        flex-direction: row-reverse;
+    }
+}
+@media only screen and (max-width: 900px) {
+    .Listicle_inner h2{
+        font-size: 22px;
+        margin: 5px 0;
+    }
+    .Listicle_inner p{
+        font-size: 14px;
+        margin: 5px 0;
+    }
+    .Listicle_outer{
+        padding: 30px 15px;
+    }
+    .Listicle_flex{
+        flex-wrap: wrap;
+    }
+    .Listicle_flex img{
+        margin-bottom: 0;
+    }
+    .Listicle_flex h2{
+        font-size: 18px;
+        line-height: 1.3em;
+    }
+    .Listicle_flex h2 span{
+        font-size: 28px;
+    }
+    .Listicle_flex>div>div{
+        max-width: 100%;
+        padding: 20px;
+    }
+}
+
+/* Footer */
+.Listicle_footer_outer{
+    max-width: 900px;
+    margin: auto;
+    padding: 20px;
+}
+.Listicle_footer_outer p{
+    font-size: 18px;
+    font-weight: 400;
+    text-align: center;
+    max-width: 500px;
+    margin: auto;
+}
+.Listicle_footer_outer a{
+    max-width: 500px;
+    display: block;
+    margin: auto;
+    padding: 15px 35px;
+    color: white;
+    font-weight: bold;
+    background: #44CC83;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all .2s;
+    margin: 20px auto;
+    font-size: 22px;
+}
+.Listicle_footer_outer a:hover{
+    transform: scale(0.95);
+}
+.Listicle_timer_title{
+    font-weight: 500 !important;
+}
+@media only screen and (max-width: 900px) {
+    .Listicle_footer_outer a{
+        font-size: 18px;
+    }
+}
+.Listicle_footer_icons{
+    display: flex;
+    gap: 10px;
+    padding: 10px;
+    background: #F5F5F5;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    margin: 20px auto;
+}
+.Listicle_footer_icons p strong{
+    color: #FF2F2F;
+}
+.Listicle_footer_icons p{
+    font-weight: 400 !important;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.Listicle_footer_icons  img{
+    max-width: 25px;
+}
+@media only screen and (max-width: 900px) {
+    .Listicle_footer_icons{
+        flex-wrap: wrap;
+        text-align: center;
+    }
+    .Sticky_announcment_bar_text{
+        font-size: 11px !important;
+    }
+}
+.Listicle_timer{
+    font-size: 48px;
+    font-weight: bold;
+    text-align: center;
+}

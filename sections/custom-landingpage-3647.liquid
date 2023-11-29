@@ -1,0 +1,274 @@
+{{ 'custom-landingpage-3647.css' | asset_url | stylesheet_tag }}
+
+<div class="Landing_header_outer">
+   {% if section.settings.logo_image != blank %}
+    <img loading="eager" src="{{ section.settings.logo_image | img_url : 'master' }}" class="">  
+    {% endif %}
+  
+</div>
+{% for block in section.blocks %}
+   {% case block.type %}
+  
+   
+     {% when 'banner' %}
+     
+     <div class="Collection_banner_outer">  
+   {% if block.settings.banner_desk != blank %}
+    <img loading="eager" src="{{ block.settings.banner_desk | img_url : 'master' }}" class="Desktop_only"> 
+    {% endif %}
+     {% if block.settings.banner_mbl != blank %}
+  <img loading="eager" src="{{ block.settings.banner_mbl | img_url : 'master' }}" class="Mobile_only">
+    {% endif %}
+</div>
+
+  {% when 'rich-text' %}
+     <div class="Listicle_outer">
+   <div class="Listicle_inner">
+      <h2>{{ block.settings.heading }}</h2>
+      <p>{{ block.settings.sub_heading }}</p>
+      <img class="arrow" src="https://cdn.shopify.com/s/files/1/2681/2616/files/Icon_material-keyboard-arrow-down-min.png?v=1689836593">
+   </div>
+</div>
+ 
+ 
+ 
+
+  {% when 'image_with_text' %}
+   <div class="Listicle_flex_outer"> 
+   <div class="Listicle_flex  {% if block.settings.reversed %} Reversed {% endif %} ">
+      <div>
+         <div>
+            <h2><span>{{ block.settings.heading_number }}.</span>{{ block.settings.heading }}</h2>
+{{ block.settings.desc }} 
+         </div>
+      </div>
+      <div> <img loading="lazy" src="{{ block.settings.image | img_url : 'master' }}"></div>
+   </div>
+ </div>
+
+  {% when 'timer_block' %}
+     <div class="Listicle_footer_outer">
+   {{ block.settings.headline }}
+     {% if block.settings.btn_label != blank %}
+   <a href="{{ block.settings.btn_link }}"> {{ block.settings.btn_label }}</a> 
+       {% endif %}
+   <p class="Listicle_timer_title">{{ block.settings.timer_title }}</p>
+   <div class="Listicle_timer"> <span id="minutes">14</span>:<span id="seconds">46</span></div>
+   <div class="Listicle_footer_icons">
+      <div>
+         <p>{{ block.settings.text_1 }} <strong>{{ block.settings.text_2 }}</strong></p>
+      </div>
+      <div>
+         <p>
+           {% if block.settings.icon_1 != blank %}
+     <img src="{{ block.settings.icon_1 | img_url : 'master' }}">
+              {% endif %}
+           {{ block.settings.icon_1_text }}
+     </p>
+      </div>
+       <div>
+         <p>
+           {% if block.settings.icon_2 != blank %}
+     <img src="{{ block.settings.icon_2 | img_url : 'master' }}">
+              {% endif %}
+           {{ block.settings.icon_2_text }}
+     </p>
+      </div>
+   </div>
+</div>
+
+
+{% endcase %}
+{% endfor %}
+
+
+
+<script>
+ // Set the initial time for the countdown (15 minutes = 15 * 60 seconds)
+ var timeInSeconds = 15 * 60;
+
+ function updateTimerDisplay() {
+     // Calculate minutes and seconds
+     var minutes = Math.floor(timeInSeconds / 60);
+     var seconds = timeInSeconds % 60;
+
+     // Display the updated time on the page
+     $('#minutes').text(minutes <10 ? '0' + minutes : minutes);
+     $('#seconds').text(seconds <10 ? '0' + seconds : seconds);
+ }
+
+ function startCountdown() {
+     // Update the timer display immediately
+     updateTimerDisplay();
+
+     // Start the countdown and update the display every second
+     var countdownInterval = setInterval(function() {
+         if (timeInSeconds > 0) {
+             timeInSeconds--;
+             updateTimerDisplay();
+         } else {
+             // Countdown has reached 0, do something when the timer finishes
+             clearInterval(countdownInterval);
+             alert('Countdown timer has ended!');
+         }
+     }, 1000); // 1000 milliseconds = 1 second
+ }
+
+ // Start the countdown when the page is ready
+ startCountdown();
+</script>
+{% schema %}
+  {
+    "name": "Custom Landing Page",
+    "settings": [
+      {
+  "type": "image_picker",
+  "id": "logo_image",
+  "label": "Logo Image"
+}
+       
+
+    ],  "blocks": [
+       {
+       "name": "Banner",
+       "type": "banner",
+       "settings": [
+         {
+  "type": "image_picker",
+  "id": "banner_desk",
+  "label": "Banner Desktop"
+},
+      {
+  "type": "image_picker",
+  "id": "banner_mbl",
+  "label": "Banner Mobile"
+}
+       ]
+     },
+        {
+       "name": "Rich Text",
+       "type": "rich-text",
+       "settings": [ 
+         {
+  "type": "text",
+  "id": "heading",
+  "label": "Heading",
+  "default": "6 Reasons Why People Are Buying Plated Jewelry"
+},
+         {
+  "type": "text",
+  "id": "sub_heading",
+  "label": "Sub Heading",
+  "default": "Real gold, silver & diamond jewelry at fair prices"
+}
+
+       ]
+     },
+     {
+       "name": "Image with Text",
+       "type": "image_with_text",
+       "settings": [
+         {
+  "type": "checkbox",
+  "id": "reversed",
+  "label": "Reverse Image Postion",
+  "default": true
+},
+
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         },
+          {
+  "type": "text",
+  "id": "heading_number",
+  "label": "Heading No."
+},
+         {
+  "type": "text",
+  "id": "heading",
+  "label": "Heading"
+},
+         {
+  "type": "richtext",
+  "id": "desc",
+  "label": "Paragraph"
+}
+       ]
+     },
+      {
+       "name": "Timer Block",
+       "type": "timer_block",
+       "settings": [
+          {
+  "type": "richtext",
+  "id": "headline",
+  "label": "Headline"
+}, {
+  "type": "text",
+  "id": "btn_label",
+  "label": "Button Label"
+}     ,
+         {
+  "type": "url",
+  "id": "btn_link",
+  "label": "Button link"
+},
+          {
+  "type": "text",
+  "id": "timer_title",
+  "label": "Timer Title",
+            "default":"Deal Ending In:"
+}   ,
+         {
+  "type": "header",
+  "content": "Footer"
+},
+         {
+  "type": "text",
+  "id": "text_1",
+  "label": "Text",
+  "default": "Sell-Out Risk:"
+},
+         {
+  "type": "text",
+  "id": "text_2",
+  "label": "Text",
+  "default": "HIGH"
+},
+         {
+           "type": "image_picker",
+           "id": "icon_1",
+           "label": "icon 1"
+         },
+          {
+  "type": "text",
+  "id": "icon_1_text",
+  "label": "Icon Text",
+  "default": "14 Day Money-Back Guarantee"
+},
+          {
+           "type": "image_picker",
+           "id": "icon_2",
+           "label": "icon 2"
+         },
+          {
+  "type": "text",
+  "id": "icon_2_text",
+  "label": "Icon Text",
+  "default": "Free Shipping On Orders Over $200"
+}
+
+
+
+       ]
+     }
+  ],
+    "presets": [
+    {
+      "name": "Custom Landing Page"
+    }
+  ]
+  }
+{% endschema %}

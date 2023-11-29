@@ -1,0 +1,103 @@
+<style>
+  .trust_badge_section_{{ section.id }} {
+    max-width: {{section.settings.sec_width}}px;
+    margin: auto;
+    padding: 0 20px;
+    background : {{ section.settings.tab_bg }};
+    color : {{ section.settings.tab_text }};
+   display:flex;
+    flex-wrap:wrap;
+    padding: 15px;
+}
+   .trust_badge_section_{{ section.id }}  .trust_icon {
+    height: auto;
+    aspect-ratio: unset;
+    width: 25px;
+    margin-right: 5px;
+  }
+   .trust_badge_section_{{ section.id }}  .trust_text{
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    display: inline;
+    }
+    .trust_badge_block{
+      display:flex;
+      align-items:center;
+      width:25%;
+      justify-content: center;
+    }
+
+  @media only screen and (max-width: 767px) {
+.trust_badge_block{ 
+      width:50%;
+  justify-content: flex-start;
+    } 
+    .trust_badge_section_{{ section.id }}  .trust_icon {
+    width: 15px;
+    margin-right: 5px;
+  }
+   .trust_badge_section_{{ section.id }}  .trust_text{
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    line-height: 20px;
+    }
+
+}
+  </style>
+<div class="trust_badge_section_{{ section.id }}">
+  {% for block in section.blocks %}
+  <div class="trust_badge_block">
+    {% if block.settings.icon != blank %}
+    <img class="trust_icon" src="{{ block.settings.icon | img_url : 'master' }}">
+      {% endif %}
+  <div class="trust_text">{{ block.settings.text }}</div>
+  </div>
+  {% endfor %}
+</div>
+{% schema %}
+  {
+    "name": "Trust Badge Section",
+    "settings": [
+     
+       {
+  "type": "color",
+  "id": "tab_bg",
+  "label": "Section Background",
+  "default": "#DFD6EF"
+},
+      {
+  "type": "color",
+  "id": "tab_text",
+  "label": "Section text",
+  "default": "#000000"
+}
+
+    ],
+    	"blocks": [
+          {
+         "name": "Block",
+       "type": "logo_text",
+       "settings": [
+         	{
+           "type": "image_picker",
+           "id": "icon",
+           "label": "Icon"
+         },
+          {
+  "type": "richtext",
+  "id": "text",
+  "label": "Text"
+}
+       ]
+     }
+  ],
+    	"presets": [
+    {
+      "name": "Trust Badge Section"
+    }
+  ]
+  }
+{% endschema %}

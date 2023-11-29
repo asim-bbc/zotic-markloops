@@ -1,0 +1,392 @@
+<header class="Drawer__Header" style="padding-left: 17px;" data-drawer-animated-left="">
+  <form action="/search" id="burger-search"> 
+    <svg width="18" height="21" viewBox="0 0 18 21" fill="none" xmlns="http://www.w3.org/2000/svg"> <circle cx="8.28069" cy="8.28076" r="6.43552" transform="rotate(8.12799 8.28069 8.28076)" stroke="#333333" stroke-width="2"></circle> <line x1="12.5694" y1="13.5962" x2="17.1202" y2="19.6635" stroke="#333333" stroke-width="2"></line></svg> 
+    <input class="globo-search-activator" type="text" name="q" placeholder="What are you looking for?" autocomplete="off" style="color: #252525; width: 100%; border: 0; background: transparent; padding-left: 0;">
+  </form>
+</header>
+
+<div class="Drawer__Container">
+  <nav class="SidebarMenu__Nav SidebarMenu__Nav--primary topLevelNav" aria-label="Sidebar navigation">
+    <div class="SidebarMenuNav__Buttons" style="display: flex; justify-content: center;">
+      {%- for link in main_menu.links -%}
+         {%- if link.links != blank -%}
+          <button id="navbtn-{{ forloop.index }}" class="mobileNavBtn topLevel {% if forloop.index == 2 %} opened {% endif %}" data-open="{{- link.title | escape -}}">{{- link.title | escape -}}</button>
+          {% endif %}
+      {% endfor %}
+    </div>
+  </nav>
+  {%- for link in main_menu.links -%}
+    {%- if link.links != blank -%}
+      <div class="SidebarMenuNav__Nav parentNav {% if forloop.index == 2 %} opened {% endif %}" data-nav="{{- link.title | escape -}}">
+      {%- for sub_link in link.links -%}
+        {%- if sub_link.links != blank -%}
+          <button style=" " id="navbtn--1--{{ forloop.index }}" class="mobileNavBtn subNavBtn" data-open="{{- sub_link.title | escape -}}">{{- sub_link.title | escape -}}</button>
+          <div class="SidebarMenuNav__Nav SidebarMenuNav__SubNav" data-nav="{{- sub_link.title | escape -}}">
+            <button class="backMe left-arrow">MENS</button>
+            <h4>{{- sub_link.title | escape -}}</h4>
+            {%- for sub_sub_link in sub_link.links -%}
+              <a href="{{ sub_sub_link.url }}">{{ sub_sub_link.title | escape }}</a>
+            {% endfor %}
+          </div>
+        {% endif %}
+      {% endfor %}
+       <!-- Flickity HTML init -->
+         {%- for block in section.blocks -%}
+          {%- if block.type == 'mega_menu' and block.settings.navigation_mega_menu  == link.title -%}
+            {%- assign trim_mega_menu_name = block.settings.navigation_mega_menu | strip -%}
+       <div class="carousel" data-flickity='{ "prevNextButtons": false, "pageDots": false, "cellAlign": "left", "contain": true}'>
+
+            <!-- Slide 1 Start-->
+            <div class="carousel-cell">
+               {%- if block.settings.push_1_url != blank -%}
+              <a href="{{ block.settings.push_1_url }}" class="SidebarCollectionSlide">
+                    {%- endif -%}
+                <div class="image"> 
+                    <img src="{{ block.settings.push_1_image | img_url: 'master' }}">
+                </div>
+                 {%- if block.settings.push_1_heading != blank -%}
+                  <p>{{ block.settings.push_1_heading | escape }}</p>
+                {%- endif -%}
+             {%- if block.settings.push_1_url != blank -%}
+            </a>
+                {%- endif -%}
+            </div>
+             <!-- Slide 1 End-->
+
+             <!-- Slide 2 Start-->
+            <div class="carousel-cell">
+               {%- if block.settings.push_2_url != blank -%}
+              <a href="{{ block.settings.push_2_url }}" class="SidebarCollectionSlide">
+                    {%- endif -%}
+                <div class="image"> 
+                    <img src="{{ block.settings.push_2_image | img_url: 'master' }}">
+                </div>
+                 {%- if block.settings.push_2_heading != blank -%}
+                  <p>{{ block.settings.push_2_heading | escape }}</p>
+                {%- endif -%}
+             {%- if block.settings.push_2_url != blank -%}
+            </a>
+                {%- endif -%}
+            </div>
+             <!-- Slide 2 End-->
+
+         <!-- Slide 3 Start-->
+            <div class="carousel-cell">
+               {%- if block.settings.push_3_url != blank -%}
+              <a href="{{ block.settings.push_3_url }}" class="SidebarCollectionSlide">
+                    {%- endif -%}
+                <div class="image"> 
+                    <img src="{{ block.settings.push_3_image | img_url: 'master' }}">
+                </div>
+                 {%- if block.settings.push_3_heading != blank -%}
+                  <p>{{ block.settings.push_3_heading | escape }}</p>
+                {%- endif -%}
+             {%- if block.settings.push_3_url != blank -%}
+            </a>
+                {%- endif -%}
+            </div>
+             <!-- Slide 3 End-->
+
+         <!-- Slide 4 Start-->
+            <div class="carousel-cell">
+               {%- if block.settings.push_4_url != blank -%}
+              <a href="{{ block.settings.push_4_url }}" class="SidebarCollectionSlide">
+                    {%- endif -%}
+                <div class="image"> 
+                    <img src="{{ block.settings.push_4_image | img_url: 'master' }}">
+                </div>
+                 {%- if block.settings.push_4_heading != blank -%}
+                  <p>{{ block.settings.push_4_heading | escape }}</p>
+                {%- endif -%}
+             {%- if block.settings.push_4_url != blank -%}
+            </a>
+                {%- endif -%}
+            </div>
+             <!-- Slide 4 End-->
+
+         <!-- Slide 5 Start-->
+            <div class="carousel-cell">
+               {%- if block.settings.push_5_url != blank -%}
+              <a href="{{ block.settings.push_5_url }}" class="SidebarCollectionSlide">
+                    {%- endif -%}
+                <div class="image"> 
+                    <img src="{{ block.settings.push_5_image | img_url: 'master' }}">
+                </div>
+                 {%- if block.settings.push_5_heading != blank -%}
+                  <p>{{ block.settings.push_5_heading | escape }}</p>
+                {%- endif -%}
+             {%- if block.settings.push_5_url != blank -%}
+            </a>
+                {%- endif -%}
+            </div>
+             <!-- Slide 5 End-->
+         
+       </div>
+         {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {% endif %}
+  {% endfor %}
+   {%- assign secondary_menu = linklists[section.settings.secondary_menu] -%}
+
+          <nav class="SidebarMenu__Nav SidebarMenu__Nav--secondary">
+            <ul class="Linklist Linklist--spacingLoose">
+              {%- if shop.customer_accounts_enabled -%}
+                <li class="Linklist__Item">
+                  <a href="{{ routes.account_url }}" class="Text--subdued Link Link--primary">{{ 'header.navigation.account' | t }}</a>
+                </li>
+              {%- endif -%}
+              {%- for link in secondary_menu.links -%}
+                <li class="Linklist__Item">
+                  <a href="{{ link.url }}" class="Text--subdued Link Link--primary">{{ link.title | escape }}</a>
+                </li>
+              {%- endfor -%}
+
+              {%- comment -%}We automatically add some links to the secondary menu{%- endcomment -%}
+
+              
+            </ul>
+          </nav>
+</div>
+<script>
+document.addEventListener("shopify:section:load", function(event) {
+if(event.detail.sectionId === '{{section.id}}') {
+loadFeed();
+}
+});
+</script>
+<style>
+  .fadeOut{
+    transition: all 0.5s;
+    visibility: hidden;
+  }
+  .go{
+    display: none;
+  }
+  .SidebarMenuNav__Nav:not(.SidebarMenuNav__SubNav){
+    opacity: 0;
+    transition: left 0.3s ease-out;
+    position: relative;
+    visibility: hidden;
+    left: -100%;
+    height: 0;
+  }
+  .SidebarMenuNav__Nav.SidebarMenuNav__SubNav{
+    visibility: hidden;
+    display: block !important;
+    left: -100%;
+    transition: all 0.7s;
+    top: -65px;
+    width: 100%;
+  }
+  .SidebarMenuNav__Nav.SidebarMenuNav__SubNav.opened{
+    left: 0;
+    visibility: visible;
+    transition: all 0.7s;
+  }
+  .parentNav.opened{
+    opacity: 1;
+    transition: left 0.3s ease-in;visibility: visible;
+    left: 0;
+    height: auto;
+  }
+  .mobileNavBtn.topLevel,
+  .subNavBtn{
+    width: 100%;
+  }
+  .subNavBtn{
+    text-align: left;
+  }
+  .Drawer__Container{
+    position: relative;
+    height: 100%;
+  }
+  .SidebarMenuNav__SubNav{
+    background: var(--navigation-background);
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+/*     height: 135vh; */
+/*     overflow: scroll; */
+  }
+  .SidebarMenu__Nav.topLevelNav{
+    margin-bottom: 15px;
+    margin-top: 15px;
+    padding-bottom: 15px;
+    transition: all 0.5s;
+    border-bottom: 1px solid #8E918F;
+  }
+  .SidebarMenu__Nav.bottomLevelNav{
+    
+  }
+  .mobileNavBtn.topLevel{
+    padding-bottom: 10px;
+    font-weight: 600;
+    max-width: 123px;
+    text-transform: uppercase;
+  }
+  .SidebarMenuNav__Buttons{
+    column-gap: 50px;
+  }
+  
+  .mobileNavBtn.topLevel.opened{
+    border-bottom: 2px solid #8E918F;
+  }
+  .mobileNavBtn:not(.topLevel){
+    position: relative;
+    border-bottom: 1px solid var(--navigation-text-color);
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+  .mobileNavBtn:not(.topLevel):last-child{
+    border-bottom: 0;
+  }
+  .right-arrow:after{
+    content: url("data:image/svg+xml,%3Csvg width='11' height='18' viewBox='0 0 11 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10.3177 8.75L1.56771 17.5L-6.85267e-08 15.9323L7.21875 8.75L0.0364571 1.56771L1.60417 -7.01203e-08L10.3177 8.75Z' fill='white'/%3E%3C/svg%3E%0A");
+    position: absolute;
+    right: 0;
+    top: 2px;
+  } 
+  button.backMe{
+    padding-left: 30px;
+    font-size: 15px;
+    margin-bottom: 21px;
+    padding-bottom: 21px;
+    border-bottom: 1px solid #8E918F;
+    width: 100%;
+    text-align: left;
+  }
+  .left-arrow:before{
+    content: url("data:image/svg+xml,%3Csvg width='11' height='18' viewBox='0 0 11 18' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2.92192 8.92678L9.92743 15.9323L8.71365 17.1461L0.352919 8.75037L8.74974 0.353553L9.96344 1.56726L2.92236 8.57278L2.74469 8.74955L2.92192 8.92678Z' fill='black' stroke='%231C1B1B' stroke-width='0.5'/%3E%3C/svg%3E%0A");
+    position: absolute;
+    top: 2px;
+    left: 0;
+  }
+  .SidebarMenuNav__SubNav h4{
+    margin-bottom: 15px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .SidebarMenuNav__SubNav a{
+    font-size: 14px;
+    text-transform: initial;
+    position: relative;
+    margin-bottom: 22px;
+    display: block;
+  }
+  .mobileButtons{
+    padding-top: 30px;
+    padding-bottom: 30px;
+    overflow: auto;
+  }
+  .mobileButtons img {
+    display: inline-block;
+    float: left;
+    width: 50%;
+    padding: 10px;
+  }
+  .SidebarCollectionList{
+    margin: 20px 0 0;
+  }
+  .SidebarCollectionSlide{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-right: 20px;
+  }
+  .SidebarCollectionSlide .image{
+    height: 201px;
+    width: 201px;
+    background-size: cover;
+    background-position: center;
+  }
+  .SidebarCollectionSlide p{
+    margin-top: 10px;
+  }
+  #burger-search{
+    display: flex;
+    align-items: center;
+    column-gap:  10px;
+    border-bottom: 0.5px solid #A6A6A6;
+    padding-bottom: 15px;
+    width: 95%;
+  }
+  #burger-search:placeholder{
+    font-size: 12px;
+    color: #D9D9D9;
+    font-weight: 400;
+  }
+.custom-drawer-opened #glFilter-search-popup {
+    visibility: hidden;
+}
+  
+</style>
+
+<script>
+  $(function(){
+    
+    $('.PageOverlay').click(function(){
+      $('[data-action="close-drawer"]').hide();
+      $('[data-action="open-drawer"]').show();
+      $('.PageOverlay').removeClass('gh');
+    });
+    var height = $('#shopify-section-header').offsetHeight;
+    $('.sideBarMenu').click(function(){
+      $(this).hide();
+      $(this).next().show();
+      $('.PageOverlay').addClass('gh');
+    });
+    $('[data-action="close-drawer"]').click(function(){
+      $(this).hide();
+      $(this).prev().show();
+      $('.PageOverlay').removeClass('gh');
+    });
+    var lastClicked;
+    $('.sideBarMenu').click(function(){
+      $('.SidebarCollectionList.woman').hide();
+    });
+    $('.mobileNavBtn').click(function(){
+      var button = $(this);
+      var buttonBtn = button.data('open');
+      
+      if(button.hasClass('topLevel')){
+        button.addClass('opened');
+        button.siblings().removeClass('opened');
+        if(button.is('#navbtn-2')){
+          $('.SidebarCollectionList.man').hide();
+          $('.SidebarCollectionList.woman').show();
+        }else{
+          $('.SidebarCollectionList.man').show();
+          $('.SidebarCollectionList.woman').hide();
+        }
+      }
+      $('[data-nav="'+ buttonBtn +'"]').siblings('.SidebarMenuNav__Nav').removeClass('opened');
+      $('[data-nav="'+ buttonBtn +'"]').addClass('opened');
+
+      // $('.SidebarCollectionList').hide();
+      // $('.bottomLevelNav').hide();
+
+      lastClicked = buttonBtn;
+      
+      if(button.hasClass('subNavBtn')){
+        
+      }
+    });
+    $('.subNavBtn').click(function(){
+      $('.SidebarBottom').fadeOut()
+    })
+    $('.backMe').click(function(){
+      $('[data-nav="'+ lastClicked +'"]').removeClass('opened');
+      
+      // $('.SidebarCollectionList').show();
+      // $('.bottomLevelNav').show();
+      $('.SidebarBottom').fadeIn();
+      $(this).parent().hide();
+    });
+  })
+</script>

@@ -1,0 +1,179 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<link rel="stylesheet" href="{{ 'custom-footer.css' | asset_url }}">
+{% assign footer_linklist_2 = section.settings.footer_linklist_col_2 %}
+{% assign footer_linklist_3 = section.settings.footer_linklist_col_3 %}
+
+
+<div class="custom-footer-section">
+  <div class="section-{{ section.id }}-padding">
+    <div class="Page_width">
+      <div class="custom-footer-wrapper">
+        <div class="custom-footer-left-container">
+          <div class="custom-footer-left-sub-container">
+            <h4>{{ section.settings.menu_title_1 }}</h4>
+            <ul>
+              
+              {% for link in linklists[footer_linklist_2].links %}
+                <li class="">
+                  <a
+                    href="{{ link.url }}"
+                    name="{{ link.title }}"
+                    title="{{ link.title }}"
+                    aria-label="{{ link.title }}"
+                  >
+                    <span>{{ link.title }}</span>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="custom-footer-left-sub-container">
+            <h4>{{ section.settings.menu_title_2 }}</h4>
+            <ul>
+              {% for link in linklists[footer_linklist_3].links %}
+                <li class="">
+                  <a
+                    href="{{ link.url }}"
+                    name="{{ link.title }}"
+                    title="{{ link.title }}"
+                    aria-label="{{ link.title }}"
+                  >
+                    <span>{{ link.title }}</span>
+                  </a>
+                </li>
+              {% endfor %}
+            </ul>
+          </div>
+          <div class="custom-footer-left-sub-container">
+          </div>
+        </div>
+        <div class="custom-footer-right-container">
+          <h4>{{ section.settings.news_title }}</h4>
+          <div class="custom-fotoer-newsletter">
+            <!-- {% form 'customer' %}
+            <input type="email" name="contact[mail]" placeholder="Your Email Address">
+            <button type="submit">SIGN UP</button>
+            {% endform %} -->
+            <input type="email" name="contact[mail]" placeholder="Your Email Address">
+            <button type="submit">SIGN UP</button>
+            
+          </div>
+          <div class="custom-footer-social-list">
+            <i class="fa-brands fa-instagram"></i>
+            <i class="fa-brands fa-tiktok"></i>
+            <i class="fa-brands fa-twitter"></i>
+            <i class="fa-brands fa-facebook-f"></i>
+            <i class="fa-brands fa-youtube"></i>
+          </div>
+        </div>
+      </div>
+      <div class="custom-footer-copyright">
+        <p>{{ section.settings.copy_txt }}</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+{% schema %}
+  {
+    "name": "Custom footer",
+    "settings": [
+       {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 40,
+      "unit": "px"
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "default": 52,
+      "unit": "px"
+    },
+    {
+      "type": "header",
+      "content": "Column 1"
+    },
+    {
+      "type":"text",
+      "id":"menu_title_1",
+      "label":"Footer Menu Title",
+      "default":"Help"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_linklist_col_2",
+      "label": "Select Menu"
+    },
+    {
+      "type": "header",
+      "content": "Column 2"
+    },
+    {
+      "type":"text",
+      "id":"menu_title_2",
+      "label":"Footer Menu Title",
+      "default":"More"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_linklist_col_3",
+      "label": "Select Menu"
+    },
+    {
+      "type": "header",
+      "content": "Column 3"
+    },
+    {
+      "type":"text",
+      "id":"news_title",
+      "label":"Newsletter Title",
+      "default":"SIGN UP FOR ALPHALETE <br> NEWSLETTER"
+    },
+    {
+      "type":"textarea",
+      "id":"copy_txt",
+      "label":"Copy Text" 
+    }
+    
+    ],
+    "presets": [
+      {
+        "name": "Custom Footer"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,411 @@
+{{ 'https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.5.9/slick-theme.min.css' | stylesheet_tag }}
+<style>
+  #logo-slider-{{ section.id }} , #logo-slider-{{ section.id }} .box-ratio img{
+    background : {{ section.settings.sec_bg }};
+    display: flex;
+    align-items: center;
+     gap: {{ section.settings.spacing }}px;
+  }
+  /* the slides  
+    #logo-slider-{{ section.id }} .slick-slide {
+      margin: 0 {{ section.settings.spacing }}px;
+  } */
+
+  /* the parent 
+   #logo-slider-{{ section.id }} .slick-list {
+      margin: 0 -{{ section.settings.spacing }}px;
+  } */
+ div#shopify-section-{{section.id}} .slick-track {
+    display: flex;
+    align-items: center;
+    gap: {{ section.settings.spacing }}px;
+}  
+div#shopify-section-{{section.id}}  .slick-arrow {
+	z-index: 1;
+	width: 30px;
+	height: 30px;
+      margin-top: auto;
+    margin-bottom: auto;
+}
+
+ 
+  
+div#shopify-section-{{section.id}} .slick-arrow:before {
+	font-size: 30px;
+}
+div#shopify-section-{{section.id}} .slick-next {
+	right: 0;
+}
+div#shopify-section-{{section.id}} .slick-prev {
+	left: 0;
+}
+
+div#shopify-section-{{section.id}} .btn-wrap {
+	text-align: center;
+	width: 100%;
+}
+/* #logo-slider-{{ section.id }} button {
+	background-color: #ddd;
+	border: none;
+	padding: 10px 20px;
+	border-radius: 5px;
+	margin: 10px;
+	font-size: 18px;
+	font-weight: 600;
+	transition: all 0.5s;
+} */
+div#shopify-section-{{section.id}} button.slick-disabled {
+	opacity: 0.6;
+}
+div#shopify-section-{{section.id}} .slick-next:before, .slick-prev:before { 
+    opacity: 1; 
+}
+  #logo-slider-{{ section.id }} {
+    padding-bottom : {{section.settings.bottom_padding}}px;
+   padding-top : {{section.settings.top_padding}}px;
+  }
+ div#shopify-section-{{section.id}}  .slick-next:before,div#shopify-section-{{section.id}}  .slick-prev:before { 
+    color: {{ section.settings.arrows_color }};
+}
+ div#shopify-section-{{section.id}}  div.gld-section__headers {
+    margin-bottom: 22px;
+}
+ 
+   #logo-slider-{{ section.id }} .slick-slide img { 
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+     margin: auto;
+}
+  @media (min-width: 768px){
+     #logo-slider-{{ section.id }} .slick-slide { 
+    height: {{ section.settings.image-height-desk}}px; 
+} 
+   div#shopify-section-{{section.id}}  .gld-section__preheader {
+    font-size: 34px;
+}
+  div#shopify-section-{{section.id}}   .gld-section__title {
+    font-size: 68px;
+    line-height: 1.0735294118em;
+      font-weight: 800;
+}
+  div#shopify-section-{{section.id}}   .gld-section__subtitle {
+    font-size: 48px;
+    line-height: 1.125em;
+       font-weight: 500;
+}
+   div#shopify-section-{{section.id}}  .container {
+    padding: 0 60px;
+}
+  }
+  @media (max-width: 768px){
+     #logo-slider-{{ section.id }} .slick-slide { 
+    height: {{ section.settings.image-height-mobile}}px; 
+}
+   div#shopify-section-{{section.id}}  .gld-section__subtitle {
+    font-size: 24px;
+    line-height: 1.3333333333em;
+}
+   div#shopify-section-{{section.id}}  .gld-section__title {
+    font-size: 34px;
+    line-height: 1.2352941176em;
+}
+   div#shopify-section-{{section.id}}  .gld-section__preheader {
+    font-size: 17px;
+}
+   div#shopify-section-{{section.id}}  .container {
+    padding: 0 20px;
+}
+  }
+
+
+   @media only screen and (max-width: 768px) {
+div#shopify-section-{{section.id}}  .slick-arrow:before {
+    font-size: 18px;
+}
+}
+  </style>
+  <div class="container">
+        <div class="square-images__text">
+          
+    <div class="gld-section__spacing-top gld-section__headers">
+    
+        <div class="gld-section__preheader">
+            {{ section.settings.heading1 }}
+        </div> 
+    
+      
+          <div class="gld-section__title"> 
+           
+              {{ section.settings.heading2 }}
+          
+          </div> 
+      
+      
+          <div class="gld-section__subtitle">
+               {{ section.settings.heading3 }}
+          </div>
+       
+      
+    </div>
+    
+        </div>
+      </div>
+<div class=" page-width wrapper" id="logo-slider-{{ section.id }}">
+  {% for block in section.blocks %}
+   {% if  block.settings.link != blank %} 
+  <a href="{{ block.settings.link }}" class="logo_image_wrapper">
+     {% else %}
+      <div href="{{ block.settings.link }}" class="logo_image_wrapper">
+     {% endif %}
+   {%- if block.settings.image != blank -%}
+  <img src="{{ block.settings.image | img_url : 'master' }}">
+        {%- else -%}
+          <div class="onboard">
+          {{ 'image' | placeholder_svg_tag: 'placeholder-svg' }}
+          </div>
+        {%- endif -%}
+     {% if  block.settings.link != blank %}
+       </a>
+       {% else %}
+    </div>
+       {% endif %}
+    {% endfor %}
+</div>
+
+<script>
+  $(document).ready(function(){
+   $('#logo-slider-{{ section.id }}').slick({
+  slidesToShow: {{ section.settings.slidesToShow }},
+     slidesToScroll: {{ section.settings.slidestoscroll }},
+      arrows : {{section.settings.arrows}}
+    {% if section.settings.arrows == true and section.settings.autplay_style != 'smooth' %}, 
+    prevArrow: '<button class="slide-arrow prev-arrow slick-prev"></button>',
+    nextArrow: '<button class="slide-arrow next-arrow slick-next "></button>'
+     {% endif %}
+     {% if section.settings.autplay_style == 'smooth' %},
+     autoplay: true,
+  speed: 8000,
+  cssEase: 'linear'
+    {% elsif section.settings.autplay_style == 'default' %}, 
+     autoplay: true,
+  autoplaySpeed: {{ section.settings.autoPlaySpeed }}000
+    {% else %},
+       autoplay: false
+     {% endif %}
+
+     ,responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: {{ section.settings.slidesToShow_mbl }},
+        }
+      }
+     ]
+     
+  
+});
+});
+
+</script>
+{% schema %}
+  {
+    "name": "Custom Images Slider",
+    "settings": [
+      {
+  "type": "text",
+  "id": "heading1",
+  "label": "Pre-Heading",
+  "default": "Join the"
+},
+      {
+  "type": "text",
+  "id": "heading2",
+  "label": "Heading",
+  "default": "GLD Gang"
+},
+      {
+  "type": "text",
+  "id": "heading3",
+  "label": "Sub-Heading",
+  "default": "@shopGLD"
+},
+
+      {
+  "type": "paragraph",
+  "content": "After applying the settings please make sure to save the changes to test them so that the slider can show accurate results in Theme Customizer. Normally Slider breaks the styling when the settings are being changed , Don't Worry! just hit the SAVE button and it will start working fine again."
+},
+
+      {
+  "type": "color",
+  "id": "sec_bg",
+  "label": "Background",
+  "default": "#eee"
+},
+     
+      {
+  "type": "checkbox",
+  "id": "arrows",
+  "label": "Enable arrows",
+  "default": true
+},
+       {
+  "type": "color",
+  "id": "arrows_color",
+  "label": "Arrows Color",
+  "default": "#fff"
+},
+      {
+  "type": "range",
+  "id": "slidesToShow",
+  "min": 1,
+  "max": 12,
+  "step": 1,
+  "unit": "img",
+  "label": "Images Per View Desktop",
+  "default": 5
+},
+           {
+  "type": "range",
+  "id": "image-height-desk",
+  "min": 50,
+  "max": 600,
+  "step": 50,
+  "unit": "px",
+  "label": "Image height Desktop",
+  "default": 300
+},
+      {
+  "type": "range",
+  "id": "image-height-mobile",
+  "min": 50,
+  "max": 600,
+  "step": 50,
+  "unit": "px",
+  "label": "Image height Mobile",
+  "default": 300
+}, 
+       {
+  "type": "range",
+  "id": "slidestoscroll",
+  "min": 1,
+  "max": 12,
+  "step": 1,
+  "unit": "img",
+  "label": "Images to Scroll",
+  "default": 2
+},
+        {
+  "type": "range",
+  "id": "slidesToShow_mbl",
+  "min": 1,
+  "max": 12,
+  "step": 1,
+  "unit": "img",
+  "label": "Images Per View Mobile",
+  "default": 4
+},
+       {
+  "type": "range",
+  "id": "spacing",
+  "min": 0,
+  "max": 60,
+  "step": 1,
+  "unit": "px",
+  "label": "Space between Images",
+  "default": 20
+},
+       {
+  "type": "range",
+  "id": "autoPlaySpeed",
+  "min": 0,
+  "max": 20,
+  "step": 1,
+  "unit": "sec",
+  "label": "AutoPlay Speed",
+  "default": 5
+},
+      {
+  "type": "radio",
+  "id": "autplay_style",
+  "label": "AutoPlay Style",
+  "options": [
+     {
+      "value": "disabled",
+      "label": "Disable Autoplay"
+    },
+    {
+      "value": "default",
+      "label": "Default"
+    },
+    {
+      "value": "smooth",
+      "label": "Smooth scroll"
+    }
+    
+  ],
+  "default": "default"
+},
+      {
+  "type": "header",
+  "content": "Section Padding"
+},
+         {
+  "type": "range",
+  "id": "top_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Top Padding",
+  "default": 15
+},
+          {
+  "type": "range",
+  "id": "bottom_padding",
+  "min": 0,
+  "max": 100,
+  "step": 1,
+  "unit": "px",
+  "label": "Bottom Padding",
+  "default": 15
+}
+
+
+
+
+    ],
+    "blocks": [
+     {
+       "name": "Image",
+       "type": "image",
+       "settings": [
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Logo Image"
+         },
+         {
+  "type": "url",
+  "id": "link",
+  "label": "Logo link"
+}
+
+       ]
+     }
+  ],
+    "presets": [
+    {
+      "name": "Custom Images Slider",
+      "blocks": [
+        {
+          "type": "image"
+        },
+        {
+          "type": "image"
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %}

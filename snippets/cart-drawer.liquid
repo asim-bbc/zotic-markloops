@@ -1,0 +1,332 @@
+{%- capture section_settings -%}
+{
+  "type": {{ settings.cart_type | json }},
+  "itemCount": {{ cart.item_count }},
+  "drawer": true,
+  "hasShippingEstimator": false
+}
+{%- endcapture -%}
+
+<div id="sidebar-cart" class="Drawer Drawer--fromRight" aria-hidden="true" data-section-id="cart" data-section-type="cart" data-section-settings='{{ section_settings }}'>
+  <div class="Drawer__Header Drawer__Header--bordered Drawer__Container">
+      <span class="Drawer__Title Heading u-h4">{{ 'cart.general.title' | t }}</span>
+
+      <button class="Drawer__Close Icon-Wrapper--clickable" data-action="close-drawer" data-drawer-id="sidebar-cart" aria-label="{{ 'header.navigation.close_cart' | t }}">
+        {%- render 'icon' with 'close' -%}
+      </button>
+  </div>
+  <form class="Cart Drawer__Content" action="/checkout?force_checkout=redesign}" method="POST" novalidate>
+    <div class="Drawer__Main" data-scrollable>
+      {%- if settings.cart_show_free_shipping_threshold -%}
+        {%- assign threshold_in_cents = settings.cart_free_shipping_threshold | times: 100 -%}
+
+        <div class="Cart__ShippingNotice Text--subdued">
+          <div class="Drawer__Container">
+            {%- if cart.total_price >= threshold_in_cents -%}
+              <p>{{- 'cart.general.free_shipping' | t -}}</p>
+            {%- else -%}
+              {%- capture remaining_amount -%}<span>{{ cart.total_price | minus: threshold_in_cents | abs | money }}</span>{%- endcapture -%}
+              <p>{{- 'cart.general.free_shipping_remaining_html' | t: remaining_amount: remaining_amount -}}</p>
+            {%- endif -%}
+          </div>
+        </div>
+      {%- endif -%}
+
+      {%- if cart.item_count == 0 -%}
+        <p class="Cart__Empty Heading u-h5">{{ 'cart.general.empty' | t }}</p>
+      {%- else -%}
+        <div class="Drawer__Container">
+          <input type="hidden" name="attributes[collection_mobile_items_per_row]" value="">
+          <input type="hidden" name="attributes[collection_desktop_items_per_row]" value="">
+            <div class="free-bar">
+              <p class="custom-bar-text-fill">You're eligible for FREE delivery!</p>
+              <div class="custom-bar" style="background: #F0F0F0">
+                <div class="custom-bar-range" style="background: rgb(242, 204, 92); width: 100%;"></div>
+              </div>
+            </div>
+          {% render 'cart-items' %}
+        </div>
+      {%- endif -%}
+    </div>
+<!--  <div class="cart-image">
+          <center> 
+  <img src="https://cdn.shopify.com/s/files/1/0640/7792/2539/t/29/assets/Copy_of_Copy_of_48_HRSPACKAGING_SHIPPING_3_800x%20(1)sss.png" width=67%>
+   </center>
+        </div> -->
+    {%- unless cart.item_count == 0 -%}
+      {% render 'trust_badge_cart_3647' %}
+    {% endunless %}
+    
+    {%- unless cart.item_count == 0 -%}
+      <div class="Drawer__Footer" data-drawer-animated-bottom>
+      
+       
+       
+        
+   
+
+        {%- if settings.cart_enable_notes or shipping_and_taxes_notice != blank -%}
+          {%- if settings.cart_enable_notes -%}
+            {%- if cart.note == blank -%}
+              <button type="button" class="Cart__NoteButton" data-action="toggle-cart-note">{{ 'cart.general.add_note' | t }}</button>
+            {%- else -%}
+              <button type="button" class="Cart__NoteButton" data-action="toggle-cart-note">{{ 'cart.general.edit_note' | t }}</button>
+            {%- endif -%}
+          {%- endif -%}
+
+          {%- if shipping_and_taxes_notice != blank -%}
+            <p class="Cart__Taxes Text--subdued">{{ shipping_and_taxes_notice }}</p>
+          {%- endif -%}
+
+          {%- if cart.cart_level_discount_applications != blank -%}
+            {%- for discount_application in cart.cart_level_discount_applications -%}
+              <p class="Cart__Discount">{%- render 'icon' with 'sale' -%} {{ 'cart.general.discount' | t }} ({{ discount_application.title }}): -<span>{{ discount_application.total_allocated_amount | money }}</span></p>
+            {%- endfor -%}
+          {%- endif -%}
+        {%- endif -%}
+       {% assign savingAmount = cart.total_discount %}
+
+         <div class="cart-subtotal">
+          <span><strong>SUBTOTAL:</strong></span><span class="subtotal_cart" data-money-convertible>{{ cart.total_price | money_without_trailing_zeros }}</span>
+        </div>
+<!--     Un-comment the following code to show the shipping and Saving amount below Total Price     -->
+        {% comment %}
+      
+        <div class="cart-subtotal">
+          <span><strong>SHIPPING</strong></span><span >FREE</span>
+        </div>
+        {% if savingAmount > 0 %}
+        <div class="cart-subtotal">
+          <span><strong>SAVING</strong></span><span class="saving_total" >-{{ savingAmount | money_without_trailing_zeros }} </span>
+        </div>
+        {% endif %}
+      {% endcomment %}
+      {% if settings.satisfaction_message != blank and settings.satisfaction_message_position == "above" %}
+      <div class="satisfaction_guarantee">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 20" fill="none" data-arp-injected="true">
+        <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-custom-link"/>
+        <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-general-link"/>
+        <style xmlns="" lang="en" type="text/css" id="dark-mode-custom-style"/>
+          <style xmlns="" lang="en" type="text/css" id="dark-mode-native-style"/>
+          <style xmlns="" lang="en" type="text/css" id="dark-mode-native-sheet"/>
+           <path d="M4.25781 15.7422C3.53906 15.0234 4.01563 13.5156 3.64844 12.6328C3.28125 11.75 1.875 10.9766 1.875 10C1.875 9.02344 3.26563 8.28125 3.64844 7.36719C4.03125 6.45313 3.53906 4.97656 4.25781 4.25781C4.97656 3.53906 6.48438 4.01563 7.36719 3.64844C8.25 3.28125 9.02344 1.875 10 1.875C10.9766 1.875 11.7187 3.26563 12.6328 3.64844C13.5469 4.03125 15.0234 3.53906 15.7422 4.25781C16.4609 4.97656 15.9844 6.48438 16.3516 7.36719C16.7188 8.25 18.125 9.02344 18.125 10C18.125 10.9766 16.7344 11.7187 16.3516 12.6328C15.9688 13.5469 16.4609 15.0234 15.7422 15.7422C15.0234 16.4609 13.5156 15.9844 12.6328 16.3516C11.75 16.7188 10.9766 18.125 10 18.125C9.02344 18.125 8.28125 16.7344 7.36719 16.3516C6.45313 15.9688 4.97656 16.4609 4.25781 15.7422Z" stroke="#120A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.4375 8.125L8.85156 12.5L6.5625 10.3125" stroke="#120A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+           {{ settings.satisfaction_message }}
+        </div>
+        {% endif %}
+
+      {% if settings.show_order_protection %}
+      {% assign product_id_to_check = 44113152377067 %}
+      {% assign order_protection_in_cart = false %}
+      {% for line_item in cart.items %}
+         
+          {% if line_item.product.selected_or_first_available_variant.id == product_id_to_check %}
+            {% assign order_protection_in_cart = true %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      
+        <div class="!__op-flex dark:!__op-invert !__op-items-center">
+            <div class="img_container_gurantee">
+              <div class="image_with_info"> 
+                  <img class=" !__op-w-[167px]" alt="Order Protection Logo"  src="{{ settings.order_protection_text | img_url : "master" }}">
+                <button onclick="document.getElementById('op_modal').style.display = 'flex';" type="button" id="op_info"><img alt="Information Modal Icon" src="https://op-media-asset.s3.us-west-1.amazonaws.com/assets/info-icon.svg" class="!__op-w-[12px] !__op-h-[12px] tablet:!__op-w-[16px] tablet:!__op-h-[16px] !__op-max-w-none" role="button" name="Order Protection Information Modal" aria-label="Order Protection Information Modal" aria-haspopup="dialog" tabindex="0"></button> 
+              </div>
+              <span>Protection for Damage, Loss, Theft & More!</span>
+            </div>
+             <div class="!__op-flex !__op-items-center !__op-flex-auto !__op-w-full !__op-justify-end">
+              <div class="__op-text-[12px] __op-leading-[20px] __op-font-medium __op-mr-[4px] mobilelg:__op-mr-[6px] tablet:__op-mr-[8px] __op-mt-[0.5px]">
+                <label id="op-price" class="__op-text-black __op-mb-0" for="op-toggle">$8.95</label> 
+              </div>
+             <div class="toggler">
+            <input id="toggler-1" name="toggler-1" onchange="console.log('checkbox_toggle_changed'); document.querySelector('.add_guarantee_shipping_button').classList.toggle('hidden'); document.querySelector('.main_checkout_btn').classList.toggle('hidden')" 
+           {% if settings.op_selection_method == 'selected' or order_protection_in_cart %} checked {% endif %} type="checkbox" value="1"/>
+          <label for="toggler-1">
+            <svg class="toggler-on" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 130.2 130.2">
+              <polyline class="path check" points="100.2,40.2 51.5,88.8 29.8,67.5 "></polyline>
+            </svg>
+            <svg class="toggler-off" version="1.1" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 130.2 130.2">
+              <line class="path line" x1="34.4" y1="34.4" x2="95.8" y2="95.8"></line>
+              <line class="path line" x1="95.8" y1="34.4" x2="34.4" y2="95.8"></line>
+            </svg>
+            </label>
+          </div>
+        </div>
+      </div> 
+      
+      <script>
+          function add_gurantee_shipping(this_button){
+           this_button.classList.add('loading_button');
+            var giftVariantId = 44113152377067; 
+           console.log('button custom checkout');
+           $.ajax({
+          type: 'POST',
+          url: '/cart/add.js',
+          dataType: 'json',
+          data: {
+            quantity: 1,
+            id: giftVariantId
+          },
+          success: function() {
+            console.log("Order Protection product added to cart.");
+        window.location.href = "/checkout";
+             this_button.classList.remove('loading_button');
+          
+          },
+          error: function(xhr, status, error) {
+            console.error("Error adding ORder Protection  product to cart:", error);
+          }
+        });
+          }
+      
+               // Get the modal
+          var modal = document.getElementById("op_modal");
+          
+          // Get the button that opens the modal
+          var btn = document.getElementById("op_info");
+          
+          // Get the <span> element that closes the modal
+          var span = document.getElementsByClassName("close")[0];
+          
+          // When the user clicks the button, open the modal 
+          btn.onclick = function() {
+            modal.style.display = "flex";
+          }
+          
+          // When the user clicks on <span> (x), close the modal
+          span.onclick = function() {
+            modal.style.display = "none";
+          }
+          
+          // When the user clicks anywhere outside of the modal, close it
+          window.onclick = function(event) {
+            if (event.target == modal) {
+              modal.style.display = "none";
+            }
+                }
+        </script>
+         
+      <button onclick="this.classList.add('loading_button');  var giftVariantId = 44113152377067;  
+          $.ajax({
+              url: '/cart.js',
+              dataType: 'json',
+              success: function(cart) {
+                var cartTotal = cart.total_price; 
+                var giftProductInCart = false;
+          
+                
+                for (var i = 0; i < cart.items.length; i++) {
+                  if (cart.items[i].id === giftVariantId) {
+                    giftProductInCart = true;
+                    break;
+                  }
+                }
+          
+                if (!giftProductInCart) {
+                  
+                 $.ajax({ type: 'POST',  url: '/cart/add.js',  dataType: 'json',  data: {   quantity: 1,  id: giftVariantId },  success: function() { console.log('Order Protection product added to cart.'); window.location.href = '/checkout';this.classList.remove('loading_button');},error: function(xhr, status, error) {console.error('Error adding ORder Protection  product to cart:', error);} });
+                }else{
+                    console.log('Order Protection product is alraedy added to cart.');
+                     window.location.href = '/checkout';
+                }
+              },
+              error: function(xhr, status, error) {
+                console.error('Error getting cart data:', error);
+              }
+                });" type="button" class="{% if settings.op_selection_method != 'selected' and order_protection_in_cart == false %} hidden{% endif %} add_guarantee_shipping_button Cart__Checkout Button Button--primary Button--full">
+      
+          <span>{{- 'cart.general.checkout' | t -}}</span> 
+      </button>
+
+       <button onclick="this.classList.add('loading_button');  var giftVariantId = 44113152377067;  
+          $.ajax({
+    url: '/cart.js',
+    dataType: 'json',
+    success: function(cart) {
+      var cartTotal = cart.total_price; 
+      var giftProductInCart = false;
+
+      
+      for (var i = 0; i < cart.items.length; i++) {
+        if (cart.items[i].id === giftVariantId) {
+          giftProductInCart = true;
+          break;
+        }
+      }
+
+      if (giftProductInCart) {
+        
+       $.ajax({ type: 'POST',  url: '/cart/change.js',  dataType: 'json',  data: {   quantity: 0,  id: giftVariantId },  success: function() { console.log('Order Protection product removed from the cart.'); window.location.href = '/checkout';this.classList.remove('loading_button');},error: function(xhr, status, error) {console.error('Error adding ORder Protection  product to cart:', error);} });
+      }else{
+          console.log('Order Protection product is not there cart.');
+           window.location.href = '/checkout';
+      }
+    },
+    error: function(xhr, status, error) {
+      console.error('Error getting cart data:', error);
+    }
+  });" type="button" class="{% if settings.op_selection_method == 'selected' or order_protection_in_cart %} hidden{% endif %} main_checkout_btn Cart__Checkout Button Button--primary Button--full">
+      
+          <span>{{- 'cart.general.checkout' | t -}}</span> 
+        </button>
+          
+        {% else %}
+        
+          <button type="submit" name="checkout" class=" Cart__Checkout Button Button--primary Button--full">
+          <span>{{- 'cart.general.checkout' | t -}}</span>
+<!--            <span class="Button__SeparatorDot"></span>
+          <span>{{ cart.total_price | money_with_currency }}</span>  -->
+        </button>
+        
+        {% endif %}  
+      
+    {% if settings.satisfaction_message != blank and settings.satisfaction_message_position == "below" %}
+      <div class="satisfaction_guarantee">
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 20" fill="none" data-arp-injected="true">
+        <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-custom-link"/>
+        <link xmlns="" type="text/css" rel="stylesheet" id="dark-mode-general-link"/>
+        <style xmlns="" lang="en" type="text/css" id="dark-mode-custom-style"/>
+          <style xmlns="" lang="en" type="text/css" id="dark-mode-native-style"/>
+          <style xmlns="" lang="en" type="text/css" id="dark-mode-native-sheet"/>
+           <path d="M4.25781 15.7422C3.53906 15.0234 4.01563 13.5156 3.64844 12.6328C3.28125 11.75 1.875 10.9766 1.875 10C1.875 9.02344 3.26563 8.28125 3.64844 7.36719C4.03125 6.45313 3.53906 4.97656 4.25781 4.25781C4.97656 3.53906 6.48438 4.01563 7.36719 3.64844C8.25 3.28125 9.02344 1.875 10 1.875C10.9766 1.875 11.7187 3.26563 12.6328 3.64844C13.5469 4.03125 15.0234 3.53906 15.7422 4.25781C16.4609 4.97656 15.9844 6.48438 16.3516 7.36719C16.7188 8.25 18.125 9.02344 18.125 10C18.125 10.9766 16.7344 11.7187 16.3516 12.6328C15.9688 13.5469 16.4609 15.0234 15.7422 15.7422C15.0234 16.4609 13.5156 15.9844 12.6328 16.3516C11.75 16.7188 10.9766 18.125 10 18.125C9.02344 18.125 8.28125 16.7344 7.36719 16.3516C6.45313 15.9688 4.97656 16.4609 4.25781 15.7422Z" stroke="#120A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M13.4375 8.125L8.85156 12.5L6.5625 10.3125" stroke="#120A0A" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+           {{ settings.satisfaction_message }}
+        </div>
+        {% endif %}
+      {% if settings.payment_icons_image != blank %}
+      <div class="drawer_footer_icons"><img src="{{ settings.payment_icons_image | img_url : 'master' }}"></div>
+        {% endif %}
+{% comment %}
+        {%- capture payment_methods -%}
+          {%- for type in shop.enabled_payment_types -%}
+            <li class="HorizontalList__Item">{{ type | payment_type_svg_tag }}</li>
+          {%- endfor -%}
+        {%- endcapture -%}
+
+        {%- if payment_methods != blank -%}
+          <ul class="Footer__PaymentList HorizontalList">
+            {{ payment_methods }}
+          </ul>
+        {%- endif -%}
+{% endcomment %}
+        {%- if settings.cart_enable_notes -%}
+          <div class="Cart__OffscreenNoteContainer" aria-hidden="true">
+            {%- if cart.note == blank -%}
+              <span class="Cart__NoteButton">{{ 'cart.general.add_note' | t }}</span>
+            {%- else -%}
+              <span class="Cart__NoteButton">{{ 'cart.general.edit_note' | t }}</span>
+            {%- endif -%}
+
+            <div class="Form__Item">
+              <textarea class="Cart__Note Form__Textarea" name="note" id="cart-note" rows="3" placeholder="{{ 'cart.general.note_placeholder' | t }}" data-scrollable>{{ cart.note }}</textarea>
+            </div>
+
+            <button type="button" class="Button Button--primary Button--full" data-action="toggle-cart-note">{{ 'cart.general.save_note' | t }}</button>
+          </div>
+        {%- endif -%}
+      </div>
+    {%- endunless -%}
+  </form>
+</div>

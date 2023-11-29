@@ -1,0 +1,275 @@
+<style>
+  .usp-section { 
+      background : {{ section.settings.sec_bg }};
+    position: relative;
+    padding: 12px 0;
+}
+  .usp-list {
+    display: flex;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    gap: 14px; 
+    flex-wrap: wrap;
+    justify-content: space-evenly; 
+    padding: 0 30px;
+}
+  .usp-list-item {
+    padding: 0 !important;
+}
+  .usp-item {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+  .usp-item img {
+    max-width: 16px;
+}
+  .usp-item .usp-heading {
+    color: {{section.settings.sec_text}}; 
+    
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 18.15px;
+    letter-spacing: 1.98px;
+    text-transform: uppercase;
+}
+  .usp-item span{
+    display:flex
+  }
+
+  @media screen and (max-width: 699px){
+   
+      .usp-item .usp-heading {
+    font-size: 11px;
+}
+    .usp-list-item:nth-child(1) {
+    order: 1;
+       width: 100%;
+}
+    .usp-section .container {
+    margin: 0 15px;
+}
+    .usp-list {
+    justify-content: center;
+    gap: 10px;
+      padding: 0 10px;
+}
+      
+  }
+
+  </style>
+<div class="usp-section">
+    <div class="container">
+        <ul class="usp-list">
+           {% if section.settings.icon_1 != blank %}
+          <li class="usp-list-item">
+          
+              <div class="usp-item">
+                
+                  <span> 
+                     <img src=" {{ section.settings.icon_1 | img_url : 'master' }}">
+                  </span>
+                
+                <p class="usp-heading">{{ section.settings.icon_1_text }}</p>
+                
+              </div>
+            
+            </li>
+              {% endif %}
+
+           {% if section.settings.icon_2 != blank %}
+          <li class="usp-list-item">
+          
+              <div class="usp-item">
+                
+                  <span> 
+                     <img src=" {{ section.settings.icon_2 | img_url : 'master' }}">
+                  </span>
+                
+                <p class="usp-heading">{{ section.settings.icon_2_text }}</p>
+                
+              </div>
+            
+            </li>
+              {% endif %}
+
+           {% if section.settings.icon_3 != blank %}
+          <li class="usp-list-item">
+          
+              <div class="usp-item">
+                
+                  <span> 
+                     <img src=" {{ section.settings.icon_3 | img_url : 'master' }}">
+                  </span>
+                
+                <p class="usp-heading">{{ section.settings.icon_3_text }}</p>
+                
+              </div>
+            
+            </li>
+              {% endif %} 
+        
+        </ul>
+</div>
+</div>
+
+{% comment %}
+<style>
+  .colleciton_page_single_icon { 
+    height:{{ section.settings.icons_size }}px;
+}
+  .collection_page_icons {
+    display: flex;
+    justify-content: space-evenly;
+  padding: 15px 0;
+}
+.colleciton_page_single_icon {
+    display: flex;
+    width: fit-content;
+}
+.colleciton_page_single_icon img {
+    width: auto;
+    height: 100%;
+}
+.icons_wrapper_clp {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 16px;
+}
+  @media only screen and (max-width: 767px) {
+   .colleciton_page_single_icon { 
+    height:{{ section.settings.icons_size | minus : 10 }}px;
+}
+     .icons_wrapper_clp { 
+    font-size: 13px;
+}
+.collection_page_icons { 
+  padding: 10px 0;
+    justify-content: space-between;
+  gap:4px;
+} 
+   #shopify-section-icons-row-3647 .Container { 
+    padding: 0 10px;
+}
+  }
+</style>
+
+<section class="Container">  
+  <div class="collection_page_icons">
+  
+  <div class="icons_wrapper_clp">
+  {% if section.settings.icon_1 != blank %}
+  <div  class="colleciton_page_single_icon">
+ <img src=" {{ section.settings.icon_1 | img_url : 'master' }}">
+  </div>
+    {% endif %}
+   <div class="store-benefit-texte block_font_size">
+           {{ section.settings.icon_1_text }}
+        </div>
+   </div>
+
+  <div class="icons_wrapper_clp">
+  {% if section.settings.icon_2 != blank %}
+  <div class="colleciton_page_single_icon">
+ <img src=" {{ section.settings.icon_2 | img_url : 'master' }}">
+  </div>
+    {% endif %}
+   <div class="store-benefit-texte block_font_size">
+           {{ section.settings.icon_2_text }}
+        </div>
+   </div>
+
+  <div class="icons_wrapper_clp">
+  {% if section.settings.icon_3 != blank %}
+  <div   class="colleciton_page_single_icon">
+ <img src=" {{ section.settings.icon_3 | img_url : 'master' }}">
+  </div>
+    {% endif %}
+   <div class="store-benefit-texte block_font_size">
+           {{ section.settings.icon_3_text }}
+        </div>
+   </div>
+   
+ 
+  </div>
+  </section>
+{% endcomment %}
+{% schema %}
+  {
+    "name": "Icons Row",
+    "settings": [
+      {
+  "type": "color",
+  "id": "sec_bg",
+  "label": "Background",
+  "default": "#1C1C1C"
+},
+       {
+  "type": "color",
+  "id": "sec_text",
+  "label": "Text",
+  "default": "#fff"
+},
+     
+       {
+  "type": "header",
+  "content": "Icons Row"
+},
+    {
+  "type": "image_picker",
+  "id": "icon_1",
+  "label": "Icon 1"
+},
+    {
+  "type": "text",
+  "id": "icon_1_text",
+  "label": "label",
+  "default": "Quick links"
+},
+    {
+  "type": "image_picker",
+  "id": "icon_2",
+  "label": "Icon 2"
+},
+     {
+  "type": "text",
+  "id": "icon_2_text",
+  "label": "label",
+  "default": "Quick links"
+},
+    {
+  "type": "image_picker",
+  "id": "icon_3",
+  "label": "Icon 3"
+},
+     {
+  "type": "text",
+  "id": "icon_3_text",
+  "label": "label",
+  "default": "Quick links"
+},
+    {
+  "type": "range",
+  "id": "icons_size",
+  "min": 0,
+  "max": 200,
+  "step": 2,
+  "unit": "px",
+  "label": "Icons size",
+  "default": 60
+}
+    ],
+    "presets": [
+    {
+      "name": "Icons Row" 
+    }
+  ]
+  }
+{% endschema %}

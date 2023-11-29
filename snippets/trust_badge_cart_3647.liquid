@@ -1,0 +1,53 @@
+    <div class="store-benefits store_benefits ">
+      {% if  settings.icon_1 != blank or  settings.text_1 != blank %}
+      <div class="store-benefit-item  first-store-benefit">
+         {% if  settings.icon_1 != blank %}
+        <div class="store-benefit-icon icon_size">
+          <img class="icon_image" src="{{  settings.icon_1 | img_url : 'master' }}" alt="">
+           </div>
+        {% endif %}
+        <div class="store-benefit-texte block_font_size">
+            {{  settings.text_1 }}
+        </div>
+         </div>
+      {% endif %}
+
+      {% if  settings.icon_2 != blank or  settings.text_2 != blank %}
+      <div class="store-benefit-item  first-store-benefit">
+         {% if  settings.icon_2 != blank %}
+        <div class="store-benefit-icon icon_size">
+          <img class="icon_image" src="{{  settings.icon_2 | img_url : 'master' }}" alt="">
+           </div>
+        {% endif %}
+        <div class="store-benefit-texte block_font_size">
+            {{  settings.text_2 }}
+        </div>
+         </div>
+      {% endif %}
+
+      {% if  settings.icon_3 != blank or  settings.text_3 != blank %}
+      <div class="store-benefit-item  first-store-benefit">
+         {% if  settings.icon_3 != blank %}
+        <div class="store-benefit-icon icon_size">
+          <img class="icon_image" src="{{  settings.icon_3 | img_url : 'master' }}" alt="">
+           </div>
+        {% endif %}
+        <div class="store-benefit-texte block_font_size">
+            {{  settings.text_3 }}
+        </div>
+         </div>
+      {% endif %}
+
+      {% if  settings.icon_4 != blank or  settings.text_4 != blank %}
+      <div class="store-benefit-item  first-store-benefit">
+         {% if  settings.icon_4 != blank %}
+        <div class="store-benefit-icon icon_size">
+          <img class="icon_image" src="{{  settings.icon_4 | img_url : 'master' }}" alt="">
+           </div>
+        {% endif %}
+        <div class="store-benefit-texte block_font_size">
+            {{  settings.text_4 }}
+        </div>
+         </div>
+      {% endif %}
+</div>

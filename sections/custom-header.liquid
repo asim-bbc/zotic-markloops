@@ -1,0 +1,391 @@
+{%- style -%}
+  .section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
+
+<link rel="stylesheet" href="{{ 'custom-header.css' | asset_url }}">
+
+<div class="custom-header-section" style="background: linear-gradient(135deg, #131110 0%, #050505 100%);">
+  <div class="section-{{ section.id }}-padding">
+    <div class="Page_width">
+      <div class="custom-header-section">
+            <div class="custom-header-container">
+              <div class="custom-header-row1">
+                <div class="custom-header-row1-container">
+                  <div class="custom-header-currency">
+                    <p>United States (USD $)</p>
+                  </div>
+                  <div class="custom-header-announcement-bar">
+                    <p>JUST RESTOCKED | STOCK CAN SELL OUT VERY FAST</p>
+                  </div>
+                  <div class="custom-header-currency-selector">
+                    <select name="currency" id="custom-header-currency">
+                      <option value="USD" selected="selected">United States (USD $)</option>
+                      <option value="EURO">Australia (EURO €)</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="custom-header-row2">
+                <div class="custom-header-row2-container">
+                  <div class="custom-header-menu">
+                    <ul class="custom-header-menu-list">
+                      <li class="custom-header-menu-list-item">
+                        <a href="#" class="custom-header-menu-list-item-link">Women</a>
+                        <div class="mega-menu">
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/collections/spring-drop">New in</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/summer-new-drop-v2">Summer New Arrivals</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/women-iced">Summer Picks</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/all-jewelry">View All Up To 44% Off</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/collections/women-necklace">Necklaces</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/women-necklace">All Necklaces</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/women-minimal">Minimal Necklaces</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/women-iced">Iced Necklaces</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/pearl">Pearls</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/wpendant">Pendants</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/moissanite-new-chains">Moissanite Necklaces</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/solid-gold">Solid Gold Necklaces</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/custom-designed-by-you">Custom - Designed By You</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/collections/women-bracelet-1">Bracelets</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/women-bracelet-1">All Bracelets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/women-iced-bracelet">Iced Bracelets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/women-bracelet-3">Minimal Bracelets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/solid-gold-bracelet">Solid Gold Bracelets</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/collections/women-earrings">Earrings</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/women-earrings">Moissanite Earring</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/colored-moissanite-earring">Colored Moissanite Earring</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/products/zoticw-micro-cuban-chain-3mm-gold#">Gift & Sets</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/simple-bundle-sets">Minimal Sets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/iced-bundle-sets">Iced Sets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/bracelet-bundle-sets">Bracelet Sets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/personalized-jewelry">Engraved Jewelry</a></li>
+                              <li><a href="https://zoticjewelry.myshopify.com/apps/gbb/builder/1">Build Your Own Set - 44% OFF</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/products/zoticw-micro-cuban-chain-3mm-gold#">Accessories</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/shades">Sunglasses</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/iced-out-watch">Watches</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/women-rings">Rings</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                      <li class="custom-header-menu-list-item">
+                        <a href="#" class="custom-header-menu-list-item-link">Men</a>
+                        <div class="mega-menu">
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/collections/spring-drop">New in</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/summer-new-drop-v2">Summer New Arrivals</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/iced">Summer Picks</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/all-jewelry">View All Up To 44% Off</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/products/zoticw-micro-cuban-chain-3mm-gold#">Chains</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/chains">All Chains</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/best-selling-chains">Best Sellers</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/simple-chain">Minimal Chains</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/iced">Iced Chains</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/pearl">Pearls</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/pendants">Pendants</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/moissanite-chains-1">Moissanite Chains</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/solid-gold">Solid Gold Chains</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/custom">Custom - Designed By You</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/collections/bracelets">Bracelets</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/bracelets">All Bracelets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/iced-bracelet">Iced Bracelets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/top-selling-bracelets">Minimal Bracelets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/solid-gold-bracelet">Solid Gold Bracelets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/moissanite-bracelets">Moissanite Bracelets</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/collections/earrings">Earrings</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/earrings">Moissanite Earring</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/colored-moissanite-earring">Colored Moissanite Earring</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/products/zoticw-micro-cuban-chain-3mm-gold#">MOISSANITE</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/moissanite-chains-1">Moissanite Chains</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/moissanite-bracelets">Moissanite Bracelets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/moissanite-pendant">Moissanite Pendants</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/moissanite-watches">Moissanite Watches</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/moissanite-ring">Moissanite Rings</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/earrings">Moissanite Earring</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/products/zoticw-micro-cuban-chain-3mm-gold#">Gift & Sets</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/simple-bundle-sets">Minimal Sets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/iced-bundle-sets">Iced Sets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/bracelet-bundle-sets">Bracelet Sets</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/personalized-jewelry">Engraved Jewelry</a></li>
+                              <li><a href="https://zoticjewelry.myshopify.com/apps/gbb/builder/1">Build Your Own Set - 44% OFF</a></li>
+                            </ul>
+                          </div>
+                          <div class="mega-menu-column">
+                            <h4 class="mega-menu-heading"><a href="https://www.zoticnewyork.com/products/zoticw-micro-cuban-chain-3mm-gold#">Accessories</a></h4>
+                            <ul class="mega-menu-list">
+                              <li><a href="https://www.zoticnewyork.com/collections/iced-out-watch">Watches</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/shades">Sunglasses</a></li>
+                              <li><a href="https://www.zoticnewyork.com/collections/mens-ring">Rings</a></li>
+                            </ul>
+                          </div>
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="custom-header-logo">
+                    <a href="https://www.zoticnewyork.com/" class="custom-header-logo-link"><img src="https://cdn.shopify.com/s/files/1/0640/7792/2539/files/Link_1111111_140x_gif.png?v=1695385400" alt="Zotic Logo"></a>
+                  </div>
+                  <div class="custom-header-right-items">
+                    <a href="/search" class="custom-header-search" style="color: white; margin-right: 15px;">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </a>
+                    <div class="custom-header-cart">
+                      <i class="fa-solid fa-bag-shopping"></i>
+                    </div>
+                    <div class="custom-header-hamburger">
+                      <i class="fa-solid fa-bars"></i>
+                    </div>
+                  </div>
+
+                  <div class="custom-sidebar">
+                    <div class="custom-sidebar-content">
+                      <div class="custom-header-close">
+                        <i class="fa-solid fa-times"></i>
+                      </div>
+                      <div class="custom-mobile-mega-menu">
+                        <div class="mega-menu-tabs">
+                          <div class="mega-menu-tab active" data-tab="women">Women</div>
+                          <div class="mega-menu-tab" data-tab="men">Men</div>
+                        </div>
+
+                        <!-- Mega menu for Women -->
+                        <div class="mega-menu-mobile" id="mega-menu-women">
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="women-new-in">
+                            New in
+                          </h4>
+                          <div class="accordion-content" id="women-new-in">
+                            <li><a href="https://www.zoticnewyork.com/collections/summer-new-drop-v2">Summer New Arrivals</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/women-iced">Summer Picks</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/all-jewelry">View All Up To 44% Off</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="necklaces">
+                            Necklaces
+                          </h4>
+                          <div class="accordion-content" id="necklaces">
+                            <li><a href="https://www.zoticnewyork.com/collections/women-necklace">All Necklaces</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/women-minimal">Minimal Necklaces</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/women-iced">Iced Necklaces</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/pearl">Pearls</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/wpendant">Pendants</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/moissanite-new-chains">Moissanite Necklaces</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/solid-gold">Solid Gold Necklaces</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/custom-designed-by-you">Custom - Designed By You</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="women-bracelets">
+                            Bracelets
+                          </h4>
+                          <div class="accordion-content" id="women-bracelets">
+                            <li><a href="https://www.zoticnewyork.com/collections/women-bracelet-1">All Bracelets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/women-iced-bracelet">Iced Bracelets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/women-bracelet-3">Minimal Bracelets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/solid-gold-bracelet">Solid Gold Bracelets</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="women-earings">
+                            Earrings
+                          </h4>
+                          <div class="accordion-content" id="women-earings">
+                            <li><a href="https://www.zoticnewyork.com/collections/women-earrings">Moissanite Earring</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/colored-moissanite-earring">Colored Moissanite Earring</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="women-gift">
+                            Gift & Sets
+                          </h4>
+                          <div class="accordion-content" id="women-gift">
+                            <li><a href="https://www.zoticnewyork.com/collections/simple-bundle-sets">Minimal Sets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/iced-bundle-sets">Iced Sets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/bracelet-bundle-sets">Bracelet Sets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/personalized-jewelry">Engraved Jewelry</a></li>
+                            <li><a href="https://zoticjewelry.myshopify.com/apps/gbb/builder/1">Build Your Own Set - 44% OFF</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="women-accessories">
+                            Accessories
+                          </h4>
+                          <div class="accordion-content" id="women-accessories">
+                            <li><a href="https://www.zoticnewyork.com/collections/shades">Sunglasses</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/iced-out-watch">Watches</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/women-rings">Rings</a></li>
+                          </div>
+                        </div>
+
+                        <!-- Mega menu for Men -->
+                        <div class="mega-menu-mobile" id="mega-menu-men">
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="men-new-in">
+                            New in
+                          </h4>
+                          <div class="accordion-content" id="men-new-in">
+                            <li><a href="https://www.zoticnewyork.com/collections/summer-new-drop-v2">Summer New Arrivals</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/iced">Summer Picks</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/all-jewelry">View All Up To 44% Off</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="chains">Chains</h4>
+                          <div class="accordion-content" id="chains">
+                            <li><a href="https://www.zoticnewyork.com/collections/chains">All Chains</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/best-selling-chains">Best Sellers</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/simple-chain">Minimal Chains</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/iced">Iced Chains</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/pearl">Pearls</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/pendants">Pendants</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/moissanite-chains-1">Moissanite Chains</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/solid-gold">Solid Gold Chains</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/custom">Custom - Designed By You</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="men-bracelets">
+                            Bracelets
+                          </h4>
+                          <div class="accordion-content" id="men-bracelets">
+                            <li><a href="https://www.zoticnewyork.com/collections/bracelets">All Bracelets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/iced-bracelet">Iced Bracelets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/top-selling-bracelets">Minimal Bracelets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/solid-gold-bracelet">Solid Gold Bracelets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/moissanite-bracelets">Moissanite Bracelets</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="men-earings">
+                            Earrings
+                          </h4>
+                          <div class="accordion-content" id="men-earings">
+                            <li><a href="https://www.zoticnewyork.com/collections/earrings">Moissanite Earring</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/colored-moissanite-earring">Colored Moissanite Earring</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="moissanite">
+                            Moissanite
+                          </h4>
+                          <div class="accordion-content" id="moissanite">
+                            <li><a href="https://www.zoticnewyork.com/collections/moissanite-chains-1">Moissanite Chains</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/moissanite-bracelets">Moissanite Bracelets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/moissanite-pendant">Moissanite Pendants</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/moissanite-watches">Moissanite Watches</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/moissanite-ring">Moissanite Rings</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/earrings">Moissanite Earring</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="men-gift">
+                            Gift & Sets
+                          </h4>
+                          <div class="accordion-content" id="men-gift">
+                            <li><a href="https://www.zoticnewyork.com/collections/simple-bundle-sets">Minimal Sets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/iced-bundle-sets">Iced Sets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/bracelet-bundle-sets">Bracelet Sets</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/personalized-jewelry">Engraved Jewelry</a></li>
+                            <li><a href="https://zoticjewelry.myshopify.com/apps/gbb/builder/1">Build Your Own Set - 44% OFF</a></li>
+                          </div>
+                          <h4 class="mega-menu-mobile-heading" data-toggle="accordion" data-target="men-accessories">
+                            Accessories
+                          </h4>
+                          <div class="accordion-content" id="men-accessories">
+                            <li><a href="https://www.zoticnewyork.com/collections/iced-out-watch">Watches</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/shades">Sunglasses</a></li>
+                            <li><a href="https://www.zoticnewyork.com/collections/mens-ring">Rings</a></li>
+                          </div>
+                        </div>
+                      </div>
+
+                      <ul class="custom-sidebar-menu-list">
+                        <li class="custom-sidebar-menu-list-item"><a href="https://www.zoticnewyork.com/account">Account</a></li>
+                        <li class="custom-sidebar-menu-list-item"><a href="https://www.zoticnewyork.com/a/help">FAQs</a></li>
+                        <li class="custom-sidebar-menu-list-item"><a href="https://www.zoticnewyork.com/pages/contact">Contact Customer Support</a></li>
+                        <li class="custom-sidebar-menu-list-item"><a href="https://www.zoticnewyork.com/pages/start-a-return">Return & Refund</a></li>
+                        <li class="custom-sidebar-menu-list-item"><a href="https://www.zoticnewyork.com/apps/order-tracking?tracking_number">Track Your Order</a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Custom Header",
+  "settings": [
+    {
+    "type": "header",
+    "content": "Section Padding"
+  },
+  {
+    "type": "range",
+    "id": "padding_top",
+    "label": "Padding Top",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "default": 40,
+    "unit": "px"
+  },
+  {
+    "type": "range",
+    "id": "padding_bottom",
+    "label": "Padding Bottom",
+    "min": 0,
+    "max": 100,
+    "step": 4,
+    "default": 52,
+    "unit": "px"
+  }
+  ],
+  "presets": [
+    {
+      "name": "Custom Header"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,129 @@
+
+<script>
+    $( document ).ready(function() { 
+      function handleScroll() {
+  const triggerDiv = document.querySelector("[data-hide-sticky]");
+          const stickyContainer = document.getElementById("sticky-container");
+
+  if (triggerDiv) {
+    const triggerDivRect = triggerDiv.getBoundingClientRect();
+
+    if (triggerDivRect.top <= 0) {
+       stickyContainer.classList.remove("u-hidden");
+    } else {
+         stickyContainer.classList.add("u-hidden");
+    }
+  }
+}
+window.onscroll = handleScroll;
+
+      
+//   (function () {
+//   "use strict";
+
+//   const stickyContainer = document.getElementById("sticky-container");
+//   const observer = new IntersectionObserver(handleIntersection, {
+//     threshold: 0.1
+//   });
+
+//   document.querySelectorAll("[data-hide-sticky]").forEach((target) => {
+//     observer.observe(target);
+//   });
+
+//   function handleIntersection(entries, observer) {
+//     entries.forEach((entry) => {
+//       if (entry.isIntersecting) {
+//         stickyContainer.classList.add("u-hidden");
+//       } else {
+//         stickyContainer.classList.remove("u-hidden");
+//       }
+//     });
+//   }
+// })();   
+});
+
+
+
+  
+//   window.onscroll = function() {
+//     const width = screen.width;
+//     const stickyATC = document.getElementById('stickyFixed');
+  
+//     if (width > 767) {
+//     } else {
+      
+//       if (window.pageYOffset > 300) {
+//         stickyATC.classList.remove('sticky_atc');
+//         stickyATC.classList.add('remove_fake_btn');
+//       } else {
+//         stickyATC.classList.add('sticky_atc');
+//         stickyATC.classList.remove('remove_fake_btn');
+//       }
+      
+//     }
+//   }
+
+
+//   function enableAddToCartButton() {
+//   const addToCartButton = document.querySelector(".real_button");
+//   const group1Radios = document.querySelectorAll("input[name='option-0']");
+//   const group2Radios = document.querySelectorAll("input[name='option-1']");
+
+//   let group1Checked = false;
+//   let group2Checked = false;
+
+//   for (let i = 0; i < group1Radios.length; i++) {
+//     if (group1Radios[i].checked) {
+//       group1Checked = true;
+//       break;
+//     }
+//   }
+
+//   for (let i = 0; i < group2Radios.length; i++) {
+//     if (group2Radios[i].checked) {
+//       group2Checked = true;
+//       break;
+//     }
+//   }
+
+//   if (group1Checked && group2Checked) {
+//     addToCartButton.disabled = false;
+//   } else {
+//     addToCartButton.disabled = true;
+//   }
+// }
+
+  
+const today = new Date();
+const deliveryDateMin = new Date(today.getTime() + (3 * 24 * 60 * 60 * 1000));
+const deliveryDateMax = new Date(today.getTime() + (6 * 24 * 60 * 60 * 1000));
+
+const options = { month: 'short', day: 'numeric' };
+
+document.getElementById("delivery-date-min").textContent = deliveryDateMin.toLocaleDateString('en-US', options);
+document.getElementById("delivery-date-max").textContent = deliveryDateMax.toLocaleDateString('en-US', options);
+
+function insertElementInStickyFixed() {
+  const elementToInsert = document.querySelector("shopify-payment-terms");
+  const stickyFixedDiv = document.querySelector("div#sticky-container");
+  stickyFixedDiv.insertBefore(elementToInsert, stickyFixedDiv.children[0].nextSibling);
+}
+function insertElementForMobile() {
+  if (window.matchMedia("(max-width: 768px)").matches) {
+    insertElementInStickyFixed();
+  }
+}
+const interval = setInterval(function() {
+  const paymentTermsElement = document.querySelector("shopify-payment-terms");
+  const stickyFixedDiv = document.querySelector("div#sticky-container");
+  if (stickyFixedDiv && paymentTermsElement && stickyFixedDiv.contains(paymentTermsElement)) {
+    clearInterval(interval);
+  } else {
+    insertElementForMobile();
+  }
+}, 1000); // check every second
+
+
+
+  
+</script>

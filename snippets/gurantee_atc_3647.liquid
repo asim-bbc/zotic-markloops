@@ -1,0 +1,96 @@
+<script>
+  function handleGiftProduct() {
+     const checkbox = document.querySelector('input#toggler-1'); 
+  var giftVariantId = 44113152377067; 
+     const isChecked = checkbox.checked;
+  
+  
+  var cartTotalThreshold = 10000; // Amount in cents (85 dollars = 8500 cents)
+
+  // Get the cart data using AJAX
+  $.ajax({
+    url: '/cart.js',
+    dataType: 'json',
+    success: function(cart) {
+      var cartTotal = cart.total_price; // Cart total in cents
+      var giftProductInCart = false;
+
+      // Check if the Gift product is already in the cart
+      for (var i = 0; i < cart.items.length; i++) {
+        if (cart.items[i].id === giftVariantId) {
+          giftProductInCart = true;
+          break;
+        }
+      }
+
+      if (isChecked && !giftProductInCart) {
+        // Add Gift product to cart using AJAX
+        $.ajax({
+          type: 'POST',
+          url: '/cart/add.js',
+          dataType: 'json',
+          data: {
+            quantity: 1,
+            id: giftVariantId
+          },
+          success: function() {
+            console.log("Order Protection product added to cart.");
+            document.querySelector('input.QuantitySelector__CurrentQuantity').dispatchEvent(new Event("change", { bubbles: true }));
+          
+          },
+          error: function(xhr, status, error) {
+            console.error("Error adding ORder Protection  product to cart:", error);
+          }
+        });
+      } else if (!isChecked && giftProductInCart) {
+        // Remove ORder Protection  from cart using AJAX
+        var giftItemId = null;
+
+        for (var j = 0; j < cart.items.length; j++) {
+          if (cart.items[j].id === giftVariantId) {
+            giftItemId = cart.items[j].id;
+            break;
+          }
+        }
+
+        if (giftItemId) {
+          $.ajax({
+            type: 'POST',
+            url: '/cart/change.js',
+            dataType: 'json',
+            data: {
+              quantity: 0,
+              id: giftItemId
+            },
+            success: function() {
+              console.log("Order Protection product removed from cart.");
+              document.querySelector('input.QuantitySelector__CurrentQuantity').dispatchEvent(new Event("change", { bubbles: true }));
+          
+            },
+            error: function(xhr, status, error) {
+              console.error("Error removing ORder Protection  product from cart:", error);
+            }
+          });
+        }
+      }
+    },
+    error: function(xhr, status, error) {
+      console.error("Error getting cart data:", error);
+    }
+  });
+} 
+ 
+</script>
+<!-- The Modal -->
+<div id="op_modal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <button onclick="document.getElementById('op_modal').style.display = 'none';" class="close">&times;</button>
+    {% if settings.order_protection != blank %}
+   <div style="display: flex;"> <img src="{{ settings.order_protection | img_url : "master" }}">
+   </div>
+      {% endif %}
+  </div>
+
+</div>

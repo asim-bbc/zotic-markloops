@@ -1,0 +1,159 @@
+   <!-- CSS is included in index3647 -->
+<style>
+  .Homepage_flex_outer , .Homepage_cta_container{
+   background: {{ section.settings.sec_bg}};
+    color: {{ section.settings.sec_text}};
+  }
+  </style>
+{% for block in section.blocks %}
+  {% case block.type %}
+  {% when 'image_right' %}
+<div class="Homepage_flex_outer">
+   <div class="Page_width">
+      <div class="Homepage_image_w_text ">
+         <div>
+            <h2 class="Homepage_medium_title">{{ block.settings.text }}</h2>
+            <div class="Divider"></div>
+           {{ block.settings.description }}
+              </div>
+         <div> 
+           {% if block.settings.image != blank %}
+           <img src="{{ block.settings.image | img_url : 'master' }}">
+             {% endif %}
+         </div>
+      </div>
+   </div>
+</div>
+ {% when 'image_left' %}
+
+    <div class="Homepage_flex_outer">
+   <div class="Page_width">
+      <div class="Homepage_image_w_text Reversed">
+         <div>
+            <h2 class="Homepage_medium_title">{{ block.settings.text }}</h2>
+            <div class="Divider"></div>
+          {{ block.settings.description }}
+             </div>
+         <div> 
+   {% if block.settings.image != blank %}
+           <img src="{{ block.settings.image | img_url : 'master' }}">
+             {% endif %}
+         </div>
+      </div>
+   </div>
+</div>
+
+     {% when 'title_cta' %}
+    
+    <div class="Homepage_cta_container">
+   <div class="inner">
+      <h2 class="Homepage_medium_title">{{ block.settings.text }}</h2>
+      <div class="Divider"></div>
+     {% if block.settings.cta_label != blank %}
+      <div class="Homepage_collection_button_outer"> 
+    <a href="{{ block.settings.cta_link }}">{{ block.settings.cta_label }}</a>
+      </div>
+     {% endif %}
+   </div>
+</div>
+{% endcase %}
+{% endfor %}
+{% schema %}
+  {
+    "name": "Article with Image",
+    "settings": [],
+        "blocks": [
+     {
+       "name": "Image On The Right",
+       "type": "image_right",
+       "settings": [
+         {
+  "type": "text",
+  "id": "text",
+  "label": "Title"
+},
+          {
+  "type": "richtext",
+  "id": "description",
+  "label": "Description"
+},
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         },
+          {
+  "type": "color",
+  "id": "sec_bg",
+  "label": "Background",
+  "default": "#F5F5F5"
+},
+       {
+  "type": "color",
+  "id": "sec_text",
+  "label": "Text",
+  "default": "#000"
+}
+       ]
+     },
+            {
+       "name": "Image On The Left",
+       "type": "image_left",
+       "settings": [
+         {
+  "type": "text",
+  "id": "text",
+  "label": "Title"
+},
+          {
+  "type": "richtext",
+  "id": "description",
+  "label": "Description"
+},
+         {
+           "type": "image_picker",
+           "id": "image",
+           "label": "Image"
+         }
+       ]
+     },
+           {
+       "name": "Title with CTA",
+       "type": "title_cta",
+       "settings": [
+         {
+  "type": "text",
+  "id": "text",
+  "label": "Title"
+},
+         {
+  "type": "text",
+  "id": "cta_label",
+  "label": "CTA Label"
+},
+         {
+  "type": "url",
+  "id": "cta_link",
+  "label": "CTA link"
+}
+       ]
+     }
+  ],
+  "presets": [
+    {
+      "name": "Article with Image",
+      "blocks": [
+        {
+          "type": "image_right"
+        },
+        {
+          "type": "image_left"
+        },
+        {
+          "type": "title_cta"
+        }
+      ]
+    }
+  ]
+  }
+{% endschema %}
